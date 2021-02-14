@@ -79,7 +79,7 @@ public class BeatmapLine : MonoBehaviour
             CheckTick();
     }
 
-    private List<int> LineStringToCommandList(string s)
+    private static List<int> LineStringToCommandList(string s)
     {
         string[] commandListButStrings = s.Split(' ');
         List<int> toReturn = commandListButStrings.Select(int.Parse).ToList();
@@ -109,7 +109,8 @@ public class BeatmapLine : MonoBehaviour
 
     private void SetNextTickTime()
     {
-        nextTick = lastTick + MusicUtility.BeatsToSeconds(commands[currentCommandIndex], bpm);
+        lastTick = nextTick;
+        nextTick += MusicUtility.BeatsToSeconds(commands[currentCommandIndex], bpm);
     }
     
     public void StartRhythm()
