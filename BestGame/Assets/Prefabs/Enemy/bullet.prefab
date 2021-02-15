@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5985588877314172177}
   - component: {fileID: 5985588877314172176}
-  - component: {fileID: 5985588877314172182}
+  - component: {fileID: -5310987056974318198}
+  - component: {fileID: -2017639292753371620}
   m_Layer: 0
   m_Name: bullet
   m_TagString: Untagged
@@ -83,7 +84,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5985588877314172182
+--- !u!58 &-5310987056974318198
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5985588877314172179}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.49999997
+--- !u!114 &-2017639292753371620
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,8 +109,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5985588877314172179}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 488880ee46fd86c41869c76fc2aaaff1, type: 3}
+  m_Script: {fileID: 11500000, guid: c1893f7b133c8824697736b4e353cdc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  destroyPos: {fileID: 0}
+  col: {fileID: 0}
+  speed: 5
+  damage: 5

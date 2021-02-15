@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4257462709758054845}
   - component: {fileID: 4257462709758054842}
   - component: {fileID: 4257462709758054820}
+  - component: {fileID: -6547535253924796393}
   m_Layer: 0
   m_Name: Enemy_Square
   m_TagString: Untagged
@@ -95,8 +96,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c35a7578c6f37cc4fa52f0ef1179de09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 5985588877314172179, guid: a0e2062ffc8e51847a21c752bfacad3c, type: 3}
+  projectile: {fileID: -2017639292753371620, guid: a0e2062ffc8e51847a21c752bfacad3c, type: 3}
+  col: {fileID: 0}
   moveSpeed: 5
   fireInterval: 0.4
   bulletSpeed: 20
   destroyPos: {fileID: 0}
+--- !u!61 &-6547535253924796393
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4257462709758054843}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0

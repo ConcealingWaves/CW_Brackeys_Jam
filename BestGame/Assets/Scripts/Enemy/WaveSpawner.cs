@@ -134,6 +134,7 @@ public class WaveSpawner : MonoBehaviour
         Vector3 pos = transform.position;
         pos.y = posY;
         newEnemy.transform.position = pos;
+        newEnemy.transform.rotation = Quaternion.Euler(0,0,90);
 
         //initialize variable of enemy script
         Enemy enemyScript = newEnemy.GetComponent<Enemy>();

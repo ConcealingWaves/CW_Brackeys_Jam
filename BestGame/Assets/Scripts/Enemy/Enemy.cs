@@ -1,10 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
 public class Enemy : MonoBehaviour
 {
-    public GameObject bulletPrefab;
+    public Projectile projectile;
+    [HideInInspector]
+    public Collider2D col;
+    private ObjectPool pool;
     public float moveSpeed=5.0f;    //The move speed of the enemy
     public float fireInterval = 0.2f;
     public float bulletSpeed = 10.0f;
@@ -14,8 +19,15 @@ public class Enemy : MonoBehaviour
     private bool isPause = false;
     void Awake() {
         InvokeRepeating("fire", 0 ,fireInterval);
+        col = GetComponent<Collider2D>();
     }
-    void Update()
+
+    private void Start()
+    {
+        pool = FindObjectOfType<ObjectPool>();
+    }
+
+    void FixedUpdate()
     {
         if(!isPause)
             move();
@@ -34,12 +46,11 @@ public class Enemy : MonoBehaviour
 
     void move()
     {
-        Vector3 pos=transform.position;
-        pos.x-=moveSpeed*Time.deltaTime;
-        transform.position=pos;
+        Transform t = transform;
+        transform.Translate(new Vector2(0,1) * (moveSpeed * Time.deltaTime));
         if(destroyPos!=null)
         {
-            if(pos.x<=destroyPos.position.x)
+            if(t.position.x<=destroyPos.position.x)
             {
                 GameObject.Destroy(gameObject);
             }
@@ -48,11 +59,11 @@ public class Enemy : MonoBehaviour
 
     void fire()
     {
-        GameObject newBullet=Instantiate(bulletPrefab);
-        newBullet.transform.SetParent(transform);
-        newBullet.transform.position = transform.position;
-        EnemyBullet bulletScript = newBullet.GetComponent<EnemyBullet>();
-        bulletScript.destroyPos =destroyPos;
-        bulletScript.moveSpeed = bulletSpeed;
+        Projectile toSpawn = pool.Spawn(projectile.gameObject, projectile.name, transform.position, transform.rotation).GetComponent<Projectile>();
+        Physics2D.IgnoreCollision(toSpawn.col, col);
+        toSpawn.gameObject.layer = gameObject.layer;
+        toSpawn.MyPool = pool;
+        toSpawn.MyPoolTag = projectile.name;
+        toSpawn.Speed += moveSpeed;
     }
 }
