@@ -10,12 +10,26 @@ public class Enemy : MonoBehaviour
     public float bulletSpeed = 10.0f;
     [HideInInspector]
     public Transform destroyPos;    //The boundary where enemy wiil destroy
+
+    private bool isPause = false;
     void Awake() {
         InvokeRepeating("fire", 0 ,fireInterval);
     }
     void Update()
     {
-        move();
+        if(!isPause)
+            move();
+    }
+    public void GamePause()
+    {
+        isPause = true;
+        CancelInvoke();
+
+    }
+    public void GameResume()
+    {
+        isPause =false;
+        InvokeRepeating("fire", 0 ,fireInterval);
     }
 
     void move()
