@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class Beatmap : MonoBehaviour
 {
+    [SerializeField] private float bpm;
     [SerializeField] private List<InstrumentLinePair> beatmapLines;
+    [Space(5)] 
+    [SerializeField] private bool playOnStart;
     private Dictionary<string, BeatmapLine> parts;
 
     private void Awake()
@@ -14,6 +17,15 @@ public class Beatmap : MonoBehaviour
         foreach (var ilp in beatmapLines)
         {
             parts.Add(ilp.PartName, ilp.BeatmapLine);
+            ilp.BeatmapLine.Bpm = bpm;
+        }
+    }
+
+    private void Start()
+    {
+        if (playOnStart)
+        {
+            StartRhyhthm();
         }
     }
 
@@ -23,6 +35,14 @@ public class Beatmap : MonoBehaviour
             return parts[s]; 
         Debug.LogWarning($"I have no part named {s}, null value returned.");
         return null;
+    }
+
+    public void StartRhyhthm()
+    {
+        foreach (var line in parts.Values)
+        {
+            line.StartRhythm();
+        }
     }
 }
 

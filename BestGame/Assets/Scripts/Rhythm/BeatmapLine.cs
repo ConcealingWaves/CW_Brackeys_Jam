@@ -17,7 +17,7 @@ public class BeatmapLine : MonoBehaviour
     public const float NEGLIGIBLE_VOLUME = 0.01f;
 
     private string line;
-    private List<int> commands;
+    private List<float> commands;
     
     private string lineName;
     private AudioSource source;
@@ -31,6 +31,9 @@ public class BeatmapLine : MonoBehaviour
     private float lastTick;
     private float nextTick;
     private int currentCommandIndex;
+
+    [SerializeField] private AudioClip clip;
+    [SerializeField] private TextAsset commandsFile;
 
     public string Line
     {
@@ -57,14 +60,12 @@ public class BeatmapLine : MonoBehaviour
     private void Awake()
     {
         source = GetComponent<AudioSource>();
+        source.clip = clip;
         initialVolume = source.volume;
+        source.Stop();
         source.playOnAwake = false;
-        if (bpm <= 0)
-        {
-            bpm = 120.0f;
-            Debug.LogWarning($"BPM of {LineName} not set, was defaulted to 120.");
-        }
-
+        
+        line = CommandsReader.Read(commandsFile);
         commands = LineStringToCommandList(Line);
     }
 
@@ -79,10 +80,10 @@ public class BeatmapLine : MonoBehaviour
             CheckTick();
     }
 
-    private static List<int> LineStringToCommandList(string s)
+    private static List<float> LineStringToCommandList(string s)
     {
         string[] commandListButStrings = s.Split(' ');
-        List<int> toReturn = commandListButStrings.Select(int.Parse).ToList();
+        List<float> toReturn = commandListButStrings.Select(float.Parse).ToList();
         return toReturn;
     }
 

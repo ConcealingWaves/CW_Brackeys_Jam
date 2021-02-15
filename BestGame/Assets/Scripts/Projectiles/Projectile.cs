@@ -53,7 +53,7 @@ public class Projectile : MonoBehaviour
 
     private void Move()
     {
-        transform.Translate(transform.up * (speed * Time.fixedDeltaTime));
+        transform.Translate(new Vector2(0,1) * (speed * Time.fixedDeltaTime));
         if (Mathf.Abs(playBounds.bounds.center.x - transform.position.x) > playBounds.bounds.extents.x ||
             Mathf.Abs(playBounds.bounds.center.y - transform.position.y) > playBounds.bounds.extents.y)
         {

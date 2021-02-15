@@ -10,6 +10,14 @@ public abstract class InputReader : ScriptableObject
     private bool thrustEngaged;
     private float rotationInput;
 
+    public virtual void Enter()
+    {
+    }
+    
+    public virtual void Exit()
+    {
+    }
+
     public abstract void Tick();
 
     public bool ThrustEngaged

@@ -19,7 +19,7 @@ public class EntityController : MonoBehaviour
     [SerializeField] private float rotateSpeed;
     [SerializeField] private float acceleration;
     [Space(5)] 
-    [SerializeField] private InputReader inputReader;
+    [SerializeField] private InputReader[] inputReaders;
 
     public Vector2 MoveVector
     {
@@ -34,19 +34,31 @@ public class EntityController : MonoBehaviour
         targetMoveVector = Vector2.zero;
     }
 
+    private void Start()
+    {
+        
+    }
+
     private void OnEnable()
     {
-        inputReader.OnShoot += ShootAction;
+        foreach (var ir in inputReaders)
+            ir.Enter();
+        foreach(var ir in inputReaders)
+            ir.OnShoot += ShootAction;
     }
 
     private void OnDisable()
     {
-        inputReader.OnShoot -= ShootAction;
+        foreach (var ir in inputReaders)
+            ir.Exit();
+        foreach(var ir in inputReaders)
+            ir.OnShoot -= ShootAction;
     }
 
     private void Update()
     {
-        inputReader.Tick();
+        foreach(var ir in inputReaders)
+            ir.Tick();
     }
 
     private void FixedUpdate()
@@ -63,8 +75,8 @@ public class EntityController : MonoBehaviour
 
     private void ReadInputs()
     {
-        Thrust(inputReader.ThrustEngaged);
-        Rotate(inputReader.RotationInput);
+        Thrust(inputReaders[0].ThrustEngaged);
+        Rotate(inputReaders[0].RotationInput);
     }
 
     private void UpdateMoveVector()
