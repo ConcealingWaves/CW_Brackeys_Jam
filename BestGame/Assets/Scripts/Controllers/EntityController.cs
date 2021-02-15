@@ -5,9 +5,11 @@ using UnityEngine;
 using UnityEngine.PlayerLoop;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Collider2D))]
 public class EntityController : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    protected Rigidbody2D rb;
+    protected Collider2D col;
 
     private Vector2 moveVector;
     private Vector2 targetMoveVector;
@@ -27,6 +29,7 @@ public class EntityController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
         moveVector = Vector2.zero;
         targetMoveVector = Vector2.zero;
     }

@@ -17,7 +17,8 @@ public class FollowCamera : MonoBehaviour
 
     private void FixedUpdate()
     {
-        targetPosition = (Vector2)toFollow.transform.position + toFollow.MoveVector*followBehindFactor;
+        if(toFollow!=null)
+            targetPosition = (Vector2)toFollow.transform.position + toFollow.MoveVector*followBehindFactor;
         UpdateCameraPosition();
     }
 
