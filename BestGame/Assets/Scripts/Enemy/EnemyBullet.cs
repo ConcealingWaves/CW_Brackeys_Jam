@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
-    public GameObject bulletPrefab;
+    [HideInInspector]
     public float moveSpeed=5.0f;    //The move speed of the enemy
-    public float fireInterval = 0.2f;
-    public float bulletSpeed = 10.0f;
     [HideInInspector]
     public Transform destroyPos;    //The boundary where enemy wiil destroy
-    void Awake() {
-        InvokeRepeating("fire", 0 ,fireInterval);
-    }
     void Update()
     {
         move();
@@ -30,15 +25,5 @@ public class Enemy : MonoBehaviour
                 GameObject.Destroy(gameObject);
             }
         }
-    }
-
-    void fire()
-    {
-        GameObject newBullet=Instantiate(bulletPrefab);
-        newBullet.transform.SetParent(transform);
-        newBullet.transform.position = transform.position;
-        EnemyBullet bulletScript = newBullet.GetComponent<EnemyBullet>();
-        bulletScript.destroyPos =destroyPos;
-        bulletScript.moveSpeed = bulletSpeed;
     }
 }

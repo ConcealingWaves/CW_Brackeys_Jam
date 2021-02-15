@@ -17,7 +17,7 @@ public class WaveSpawner : MonoBehaviour
     public float GenerateInterval =0.2f;   //Time interval of enemy generation
 
     [HideInInspector]
-    public float MoveSpeed=5.0f;     //The move speed of enemy
+    public int waveLevel = 0;
 
     #endregion
 
@@ -43,6 +43,11 @@ public class WaveSpawner : MonoBehaviour
     public void GameStart()
     {
         InvokeRepeating("generate", 0 ,GenerateInterval);
+    }
+    
+    public void LevelUp()
+    {
+        waveLevel++;
     }
     #endregion
 
@@ -88,7 +93,6 @@ public class WaveSpawner : MonoBehaviour
 
         //initialize variable of enemy script
         Enemy enemyScript = newEnemy.GetComponent<Enemy>();
-        enemyScript.moveSpeed = MoveSpeed;
         enemyScript.destroyPos = LeftBoundary;
 
     }
