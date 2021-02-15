@@ -17,11 +17,14 @@ public class WaveSpawner : MonoBehaviour
     public float GenerateInterval =0.2f;   //Time interval of enemy generation
 
     [HideInInspector]
-    public float MoveSpeed=5.0f;     //The move speed of enemy
+    public int waveLevel = 0;
 
     #endregion
 
     #region private variable
+    private bool isStart = false;
+    private bool isEnd = false;
+    private bool isPause = false;
     private List<float> rateList;
 
     #endregion
@@ -30,7 +33,6 @@ public class WaveSpawner : MonoBehaviour
     void Awake()
     {
         rateList = new List<float>(generateRate);
-        GameStart();
     }
 
     void Update()
@@ -42,7 +44,54 @@ public class WaveSpawner : MonoBehaviour
     #region public function
     public void GameStart()
     {
+
+        isStart = true;
+        isEnd = isPause = false;
         InvokeRepeating("generate", 0 ,GenerateInterval);
+    }
+    public void GameOver()
+    {
+        isEnd = true;
+    }
+
+    public void GamePause()
+    {
+        if(isStart&&!isEnd)
+        {
+            isPause = true;
+            CancelInvoke();
+            for(int i=0;i<transform.childCount;i++)
+            {
+                Transform enemy=transform.GetChild(i);
+                Enemy enemyScript = enemy.GetComponent<Enemy>();
+                if(enemyScript)
+                {
+                    enemyScript.GamePause();
+                }
+            }
+        }
+    }
+    public void GameResume()
+    {
+        if (isStart && !isEnd)
+        {
+            isPause = false;
+            InvokeRepeating("generate", 0 ,GenerateInterval);
+            for(int i=0;i<transform.childCount;i++)
+            {
+                Transform enemy=transform.GetChild(i);
+                Enemy enemyScript = enemy.GetComponent<Enemy>();
+                if(enemyScript)
+                {
+                    enemyScript.GameResume();
+                }
+            }
+        }
+    }
+
+    public void LevelUp()
+    {
+        waveLevel++;
     }
     #endregion
 
@@ -88,7 +137,6 @@ public class WaveSpawner : MonoBehaviour
 
         //initialize variable of enemy script
         Enemy enemyScript = newEnemy.GetComponent<Enemy>();
-        enemyScript.moveSpeed = MoveSpeed;
         enemyScript.destroyPos = LeftBoundary;
 
     }
