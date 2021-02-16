@@ -28,12 +28,15 @@ public class EntityController : MonoBehaviour
         get => moveVector;
     }
 
+    public Vector2 ExternalMoveVector;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         moveVector = Vector2.zero;
         targetMoveVector = Vector2.zero;
+        ExternalMoveVector = Vector2.zero;
         AllowedToMove = true;
     }
 
@@ -95,6 +98,7 @@ public class EntityController : MonoBehaviour
     private void Thrust(bool on)
     {
         targetMoveVector = on ? (Vector2)transform.up * moveSpeed : Vector2.zero;
+        targetMoveVector += ExternalMoveVector;
     }
 
     private void Rotate(float dir)

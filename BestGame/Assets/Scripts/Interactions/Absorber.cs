@@ -42,7 +42,7 @@ public class Absorber : AbsorbBase
     private void OnCollisionEnter2D(Collision2D other)
     {
         Absorbable absorbable = other.gameObject.GetComponent<Absorbable>();
-        if (absorbable != null)
+        if (absorbable != null && absorbable.enabled)
         {
             AddToAbsorbedUnits(absorbable);
         }

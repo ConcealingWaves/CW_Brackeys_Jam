@@ -87,12 +87,6 @@ public class Absorbable : AbsorbBase
         print("nijiwo");
         gameObject.layer = LayerMask.NameToLayer(originalLayer);
         transform.SetParent(null);
-        //rb.isKinematic = false;
-        //rb.useFullKinematicContacts = true;
-        //rb = gameObject.AddComponent<Rigidbody2D>();
-        //SetRBValues(rb);
-        //spriteRenderer.sprite = originalSprite;
-        //killMe.enabled = true;
         primaryAbsorber = null;
         if (secondaryAbsorber != null)
         {
