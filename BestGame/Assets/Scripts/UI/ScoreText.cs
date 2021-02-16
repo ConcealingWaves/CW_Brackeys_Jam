@@ -15,7 +15,7 @@ public class ScoreText : MonoBehaviour
     public Color severityColor = Color.red;
     public float displayChangeSpeedPerSeverityInterval = 1.0f;
     public float maxFontSizeIncrease = 32;
-    [Space(10)] [SerializeField] private ScoringModule scoreToRead; 
+    [Space(10)] [SerializeField] private FloatVariable scoreToRead; 
 
     float displayedScore = 0;
     float actualScore = 0;
@@ -49,12 +49,12 @@ public class ScoreText : MonoBehaviour
 
     private void OnEnable()
     {
-        scoreToRead.OnChangeTo += SetScore;
+        scoreToRead.OnValueChangedTo += SetScore;
     }
 
     private void OnDisable()
     {
-        scoreToRead.OnChangeTo -= SetScore;
+        scoreToRead.OnValueChangedTo -= SetScore;
     }
 
     void Start()
@@ -75,7 +75,7 @@ public class ScoreText : MonoBehaviour
     private void StepDisplayedScoreTowardsActual()
     {
         int stepsToTakeTowardsGoal = (int) Mathf.Ceil(GetIntervalsBetweenActualScoreAndDisplayed() * displayChangeSpeedPerSeverityInterval);
-        displayedScore += stepsToTakeTowardsGoal;
+        displayedScore = displayedScore < actualScore ?  displayedScore+stepsToTakeTowardsGoal : displayedScore-stepsToTakeTowardsGoal;
     }
 
     private int GetIntervalsBetweenActualScoreAndDisplayed()

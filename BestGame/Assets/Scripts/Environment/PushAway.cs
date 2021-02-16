@@ -23,7 +23,7 @@ public class PushAway : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other)
     {
         EntityController cont = other.gameObject.GetComponent<EntityController>();
-        if (cont != null)
+        if (cont != null && cont.AllowedToMove)
         {
             Vector2 toAdd = pushVector * intensity * Time.fixedDeltaTime;
             cont.ExternalMoveVector += toAdd;
@@ -34,7 +34,7 @@ public class PushAway : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         EntityController cont = other.gameObject.GetComponent<EntityController>();
-        if (cont != null)
+        if (cont != null && cont.AllowedToMove)
         {
             cont.ExternalMoveVector -= currentBuiltVector;
             currentBuiltVector = Vector2.zero;
