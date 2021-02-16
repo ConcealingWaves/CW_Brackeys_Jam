@@ -30,7 +30,9 @@ public class Absorbable : MonoBehaviour
     public void GetAbsorbed(Absorber absorber)
     {
         gameObject.layer = absorber.gameObject.layer;
-        Destroy(rb);
+        rb.isKinematic = true;
+        rb.useFullKinematicContacts = true;
+        //Destroy(rb);
         spriteRenderer.sprite = absorbedSprite;
         killMe.enabled = false;
         primaryAbsorber = absorber;
@@ -39,7 +41,9 @@ public class Absorbable : MonoBehaviour
     public void Breakaway()
     {
         gameObject.layer = LayerMask.NameToLayer(originalLayer);
-        rb = gameObject.AddComponent<Rigidbody2D>();
+        rb.isKinematic = false;
+        rb.useFullKinematicContacts = true;
+        //rb = gameObject.AddComponent<Rigidbody2D>();
         SetRBValues(rb);
         spriteRenderer.sprite = originalSprite;
         killMe.enabled = true;
@@ -52,5 +56,13 @@ public class Absorbable : MonoBehaviour
             r.gravityScale = 0;
     }
     
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        Absorbable absorbable = other.gameObject.GetComponent<Absorbable>();
+        if (IsAbsorbed && absorbable != null)
+        {
+            primaryAbsorber.AddToAbsorbedUnits(absorbable);
+        }
+    }
     
 }

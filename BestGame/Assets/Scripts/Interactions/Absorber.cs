@@ -28,14 +28,14 @@ public class Absorber : MonoBehaviour
         Absorbable absorbable = other.gameObject.GetComponent<Absorbable>();
         if (absorbable != null)
         {
-            absorbable.transform.parent = transform;
-            absorbable.GetAbsorbed(this);
             AddToAbsorbedUnits(absorbable);
         }
     }
 
     public void AddToAbsorbedUnits(Absorbable a)
     {
+        a.transform.parent = transform;
+        a.GetAbsorbed(this);
         absorbedUnits.Add(a);
     }
 }

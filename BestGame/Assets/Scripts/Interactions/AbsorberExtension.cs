@@ -10,4 +10,13 @@ public class AbsorberExtension : MonoBehaviour
     {
         primaryAbsorber = a;
     }
+    
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        Absorbable absorbable = other.gameObject.GetComponent<Absorbable>();
+        if (primaryAbsorber != null && absorbable != null)
+        {
+            primaryAbsorber.AddToAbsorbedUnits(absorbable);
+        }
+    }
 }
