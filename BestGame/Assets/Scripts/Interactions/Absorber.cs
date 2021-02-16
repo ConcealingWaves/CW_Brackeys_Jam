@@ -54,8 +54,9 @@ public class Absorber : AbsorbBase
         OnChangeAbsorbNumber -= CalculateAbsorbedUnits;
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         cont.MoveSpeedFactor = Mathf.Pow(1-memberWeight , numberAbsorbed);
     }
 

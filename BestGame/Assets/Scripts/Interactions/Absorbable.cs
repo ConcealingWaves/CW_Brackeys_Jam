@@ -49,8 +49,9 @@ public class Absorbable : AbsorbBase
         originalSprite = spriteRenderer.sprite;
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         if(secondaryAbsorber!=null && secondaryAbsorber.isActiveAndEnabled == false)
             Breakaway();
         if(rb.velocity.magnitude >= SMALL_MAGNITUDE)

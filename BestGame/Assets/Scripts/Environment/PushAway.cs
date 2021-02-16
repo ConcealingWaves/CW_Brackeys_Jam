@@ -36,7 +36,7 @@ public class PushAway : MonoBehaviour
         EntityController cont = other.gameObject.GetComponent<EntityController>();
         if (cont != null && cont.AllowedToMove)
         {
-            cont.ExternalMoveVector -= currentBuiltVector;
+            cont.ExternalMoveVector = Vector2.zero; //lousy fix
             currentBuiltVector = Vector2.zero;
         }
     }

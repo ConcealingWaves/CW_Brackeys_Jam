@@ -12,10 +12,13 @@ public abstract class AbsorbBase : MonoBehaviour
     public static event Detevent OnChangeAbsorbNumber;
     private HealthHaver hh;
 
+    private int antiStackOverflow;
+
     public abstract bool IsAbsorbed();
     
     protected virtual void Awake()
     {
+        antiStackOverflow = 0;
         hh = GetComponent<HealthHaver>();
     }
 
@@ -29,6 +32,10 @@ public abstract class AbsorbBase : MonoBehaviour
         HealthHaver.OnDie -= RaiseDetachEvent;
     }
 
+    protected virtual void Update()
+    {
+        antiStackOverflow = 0;
+    }
 
     protected void RaiseDetachEvent(HealthHaver check)
     {
@@ -42,7 +49,8 @@ public abstract class AbsorbBase : MonoBehaviour
     
     protected void RaiseDetachEvent()
     {
-        print("f");
+        antiStackOverflow++;
+        if(antiStackOverflow >= 500) return;
         OnDetach?.Invoke();
         RaiseChangeEvent();
     }
