@@ -7,8 +7,10 @@ using UnityEngine;
 
 public class Absorbable : MonoBehaviour
 {
+    private Absorber primaryAbsorber;
+    
     private Rigidbody2D rb;
-    private bool isAbsorbed;
+    public bool IsAbsorbed => primaryAbsorber != null;
     
     private Sprite originalSprite;
     private string originalLayer;
@@ -31,7 +33,7 @@ public class Absorbable : MonoBehaviour
         Destroy(rb);
         spriteRenderer.sprite = absorbedSprite;
         killMe.enabled = false;
-        isAbsorbed = true;
+        primaryAbsorber = absorber;
     }
 
     public void Breakaway()
@@ -41,11 +43,14 @@ public class Absorbable : MonoBehaviour
         SetRBValues(rb);
         spriteRenderer.sprite = originalSprite;
         killMe.enabled = true;
-        isAbsorbed = false;
+        primaryAbsorber = null;
     }
 
     private void SetRBValues(Rigidbody2D r)
     {
-        r.gravityScale = 0;
+        if(r!=null) 
+            r.gravityScale = 0;
     }
+    
+    
 }

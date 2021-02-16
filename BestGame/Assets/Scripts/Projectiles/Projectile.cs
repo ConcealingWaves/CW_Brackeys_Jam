@@ -12,7 +12,8 @@ public class Projectile : MonoBehaviour
     private string myPoolTag;
     private static SpriteRenderer playBounds;
     
-    [SerializeField] private float speed;
+    [SerializeField] private float baseSpeed;
+    private float speed;
     [SerializeField] private float damage;
 
     public float Speed
@@ -44,6 +45,11 @@ public class Projectile : MonoBehaviour
         {
             playBounds = GameObject.FindWithTag("Stage").GetComponent<SpriteRenderer>();
         }
+    }
+
+    private void OnEnable()
+    {
+        speed = baseSpeed;
     }
 
     private void FixedUpdate()

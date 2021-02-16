@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class AbsorberExtension : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private Absorber primaryAbsorber;
 
-    // Update is called once per frame
-    void Update()
+    public void SetPrimaryAbsorber(Absorber a)
     {
-        
+        primaryAbsorber = a;
     }
 }

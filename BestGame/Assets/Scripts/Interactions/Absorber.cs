@@ -30,7 +30,12 @@ public class Absorber : MonoBehaviour
         {
             absorbable.transform.parent = transform;
             absorbable.GetAbsorbed(this);
-            absorbedUnits.Add(absorbable);
+            AddToAbsorbedUnits(absorbable);
         }
+    }
+
+    public void AddToAbsorbedUnits(Absorbable a)
+    {
+        absorbedUnits.Add(a);
     }
 }
