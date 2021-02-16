@@ -9,6 +9,7 @@ public abstract class AbsorbBase : MonoBehaviour
     public delegate void Detevent();
 
     public event Detevent OnDetach;
+    public static event Detevent OnChangeAbsorbNumber;
     private HealthHaver hh;
 
     public abstract bool IsAbsorbed();
@@ -28,13 +29,14 @@ public abstract class AbsorbBase : MonoBehaviour
         HealthHaver.OnDie -= RaiseDetachEvent;
     }
 
+
     protected void RaiseDetachEvent(HealthHaver check)
     {
-
         if (check == hh && IsAbsorbed())
         {
             print("s");
             OnDetach?.Invoke();
+            RaiseChangeEvent();
         }
     }
     
@@ -42,5 +44,11 @@ public abstract class AbsorbBase : MonoBehaviour
     {
         print("f");
         OnDetach?.Invoke();
+        RaiseChangeEvent();
+    }
+
+    protected void RaiseChangeEvent()
+    {
+        OnChangeAbsorbNumber?.Invoke();
     }
 }

@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(EntityController))]
 public class Absorber : AbsorbBase
 {
     public delegate void AbsorbAction(Absorber a, Absorbable ab);
@@ -12,9 +14,14 @@ public class Absorber : AbsorbBase
 
     private const float SKIN_WIDTH = 0.1f;
     
-    private List<Absorbable> absorbedUnits;
     private Collider2D col;
     private Rigidbody2D rb;
+    private EntityController cont;
+    
+    private int numberAbsorbed;
+    
+    [Range(0.0f,0.99f)]
+    [SerializeField] private float memberWeight;
 
     public Rigidbody2D Rb
     {
@@ -26,17 +33,25 @@ public class Absorber : AbsorbBase
     {
         base.Awake();
         col = GetComponent<Collider2D>();
-        absorbedUnits = new List<Absorbable>();
+        cont = GetComponent<EntityController>();
+        numberAbsorbed = 0;
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
+        OnChangeAbsorbNumber += CalculateAbsorbedUnits;
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
+        OnChangeAbsorbNumber -= CalculateAbsorbedUnits;
+    }
+
+    private void Update()
+    {
+        cont.MoveSpeedFactor = Mathf.Pow(1-memberWeight , numberAbsorbed);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -52,15 +67,15 @@ public class Absorber : AbsorbBase
     {
         a.transform.parent = transform;
         a.GetAbsorbed(this);
-        absorbedUnits.Add(a);
         OnAbsorb?.Invoke(this, a);
+        RaiseChangeEvent();
     }
-
-    public void RemoveAbsorbedUnitFromList(Absorbable a)
-    {
-        absorbedUnits.Remove(a);
-    }
+    
 
     public override bool IsAbsorbed() => true;
 
+    private void CalculateAbsorbedUnits()
+    {
+        numberAbsorbed = GetComponentsInChildren<Absorbable>().Count(k => k.enabled);
+    }
 }

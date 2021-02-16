@@ -84,7 +84,6 @@ public class Absorbable : AbsorbBase
 
     public void Breakaway()
     {
-        print("nijiwo");
         gameObject.layer = LayerMask.NameToLayer(originalLayer);
         transform.SetParent(null);
         primaryAbsorber = null;
@@ -94,7 +93,8 @@ public class Absorbable : AbsorbBase
             secondaryAbsorber = null;
         }
         RaiseDetachEvent();
-        cont.AllowedToMove = true;
+        if(cont != null)
+            cont.AllowedToMove = true;
         enabled = false;
     }
 
@@ -114,7 +114,6 @@ public class Absorbable : AbsorbBase
             absorbable.OnDetach += Breakaway;
         }
     }
-
-
+    
     
 }

@@ -15,6 +15,7 @@ public class EntityController : MonoBehaviour
     private Vector2 targetMoveVector;
 
     [SerializeField] private float moveSpeed;
+    public float MoveSpeedFactor;
     [Tooltip("Angles per second")]
     [SerializeField] private float rotateSpeed;
     [SerializeField] private float acceleration;
@@ -37,6 +38,7 @@ public class EntityController : MonoBehaviour
         moveVector = Vector2.zero;
         targetMoveVector = Vector2.zero;
         ExternalMoveVector = Vector2.zero;
+        MoveSpeedFactor = 1;
         AllowedToMove = true;
     }
 
@@ -97,7 +99,7 @@ public class EntityController : MonoBehaviour
 
     private void Thrust(bool on)
     {
-        targetMoveVector = on ? (Vector2)transform.up * moveSpeed : Vector2.zero;
+        targetMoveVector = on ? (Vector2)transform.up * (moveSpeed * MoveSpeedFactor) : Vector2.zero;
         targetMoveVector += ExternalMoveVector;
     }
 
