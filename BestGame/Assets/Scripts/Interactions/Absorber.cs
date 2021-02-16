@@ -23,6 +23,11 @@ public class Absorber : AbsorbBase
     [Range(0.0f,0.99f)]
     [SerializeField] private float memberWeight;
 
+    public int NumberAbsorbed
+    {
+        get => Mathf.Max(0, numberAbsorbed);
+    }
+
     public Rigidbody2D Rb
     {
         get => rb;

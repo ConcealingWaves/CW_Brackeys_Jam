@@ -16,6 +16,10 @@ public class Enemy : MonoBehaviour
     [HideInInspector]
     public Transform destroyPos;  //The boundary where enemy wiil destroy
 
+    [SerializeField] private float value = 100;
+
+    public float Value => value;
+
     private bool isPause = false;
     void Awake() {
         //InvokeRepeating("fire", 0 ,fireInterval);

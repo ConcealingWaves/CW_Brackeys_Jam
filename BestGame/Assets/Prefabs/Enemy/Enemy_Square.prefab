@@ -106,6 +106,7 @@ MonoBehaviour:
   fireInterval: 0.4
   bulletSpeed: 20
   destroyPos: {fileID: 0}
+  value: 100
 --- !u!61 &-6547535253924796393
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -196,9 +197,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  MoveSpeedFactor: 0
   rotateSpeed: 60
   acceleration: 10
   inputReaders:
   - {fileID: 11400000, guid: 6facbdae87e512a428b9999ad2400a8b, type: 2}
   - {fileID: 11400000, guid: 9649f6431c775824284d30068fc39001, type: 2}
+  AllowedToMove: 0
+  ExternalMoveVector: {x: 0, y: 0}
   projectile: {fileID: -2017639292753371620, guid: a0e2062ffc8e51847a21c752bfacad3c, type: 3}

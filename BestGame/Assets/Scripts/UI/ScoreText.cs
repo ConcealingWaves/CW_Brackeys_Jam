@@ -1,19 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 using TMPro;
 
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class ScoreText : MonoBehaviour
 {
+    private const float FLOATING_POINT_LEEWAY = 0.01f;
+    
     public int increaseSeverityInterval = 10;
     public int stepsToFullyChangeColor = 20;
     public Color severityColor = Color.red;
     public float displayChangeSpeedPerSeverityInterval = 1.0f;
     public float maxFontSizeIncrease = 32;
+    [Space(10)] [SerializeField] private ScoringModule scoreToRead; 
 
-    int displayedScore = 0;
-    int actualScore = 0;
+    float displayedScore = 0;
+    float actualScore = 0;
     TextMeshProUGUI textMesh;
     float baseFontSize = 1;
     Color baseColor = Color.white;
@@ -25,19 +30,14 @@ public class ScoreText : MonoBehaviour
         UpdateDisplay();
     }
 
-    public void SetScore(int amount)
+    public void SetScore(float amount)
     {
         actualScore = amount;
     }
 
-    public int GetScore()
+    public float GetScore()
     {
         return actualScore;
-    }
-
-    public void AddScore(int amount)
-    {
-        SetScore(GetScore() + amount);
     }
 
     void Awake()
@@ -45,6 +45,16 @@ public class ScoreText : MonoBehaviour
         textMesh = GetComponent<TextMeshProUGUI>();
         baseFontSize = textMesh.fontSize;
         baseColor = textMesh.color;
+    }
+
+    private void OnEnable()
+    {
+        scoreToRead.OnChangeTo += SetScore;
+    }
+
+    private void OnDisable()
+    {
+        scoreToRead.OnChangeTo -= SetScore;
     }
 
     void Start()
@@ -55,7 +65,7 @@ public class ScoreText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (displayedScore != actualScore)
+        if (Mathf.Abs(displayedScore - actualScore)>=FLOATING_POINT_LEEWAY)
         {
             StepDisplayedScoreTowardsActual();
             UpdateDisplay();
@@ -70,7 +80,7 @@ public class ScoreText : MonoBehaviour
 
     private int GetIntervalsBetweenActualScoreAndDisplayed()
     {
-        int diff = Mathf.Abs(actualScore - displayedScore);
+        float diff = Mathf.Abs(actualScore - displayedScore);
         int intervals = (int) Mathf.Ceil(diff / (float) increaseSeverityInterval);
         return intervals;
     }
@@ -79,6 +89,6 @@ public class ScoreText : MonoBehaviour
     {
         textMesh.fontSize = baseFontSize + Mathf.Min(GetIntervalsBetweenActualScoreAndDisplayed(), maxFontSizeIncrease);
         textMesh.color = Color.Lerp(baseColor, severityColor, (float) GetIntervalsBetweenActualScoreAndDisplayed() / stepsToFullyChangeColor);
-        textMesh.text = displayedScore.ToString();
+        textMesh.text = Mathf.Round(displayedScore).ToString(CultureInfo.InvariantCulture);
     }
 }

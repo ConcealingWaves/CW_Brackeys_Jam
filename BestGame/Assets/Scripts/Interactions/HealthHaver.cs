@@ -16,6 +16,8 @@ public class HealthHaver : MonoBehaviour, IDamageable
     [SerializeField] private float baseHealth;
     [SerializeField] private float health;
 
+    private bool isDead;
+
     public float Health
     {
         get => health;
@@ -24,6 +26,7 @@ public class HealthHaver : MonoBehaviour, IDamageable
 
     private void Start()
     {
+        isDead = false;
         health = baseHealth;
     }
     
@@ -37,9 +40,10 @@ public class HealthHaver : MonoBehaviour, IDamageable
     {
         Health -= dmg;
         OnHit?.Invoke(dmg, this);
-        if (Health <= 0)
+        if (Health <= 0 && !isDead)
         {
             Die();
+            isDead = true;
         }
     }
 }
