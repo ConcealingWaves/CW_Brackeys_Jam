@@ -14,11 +14,11 @@ public class Enemy : MonoBehaviour
     public float fireInterval = 0.2f;
     public float bulletSpeed = 10.0f;
     [HideInInspector]
-    public Transform destroyPos;    //The boundary where enemy wiil destroy
+    public Transform destroyPos;  //The boundary where enemy wiil destroy
 
     private bool isPause = false;
     void Awake() {
-        InvokeRepeating("fire", 0 ,fireInterval);
+        //InvokeRepeating("fire", 0 ,fireInterval);
         col = GetComponent<Collider2D>();
     }
 
@@ -29,32 +29,31 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(!isPause)
-            move();
+        if(destroyPos!=null)
+        {
+            if(transform.position.x<=destroyPos.position.x)
+            {
+                GameObject.Destroy(gameObject);
+            }
+        }
     }
     public void GamePause()
     {
         isPause = true;
-        CancelInvoke();
+        //CancelInvoke();
 
     }
     public void GameResume()
     {
         isPause =false;
-        InvokeRepeating("fire", 0 ,fireInterval);
+        //InvokeRepeating("fire", 0 ,fireInterval);
     }
 
     void move()
     {
         Transform t = transform;
         transform.Translate(new Vector2(0,1) * (moveSpeed * Time.deltaTime));
-        if(destroyPos!=null)
-        {
-            if(t.position.x<=destroyPos.position.x)
-            {
-                GameObject.Destroy(gameObject);
-            }
-        }
+        
     }
 
     void fire()

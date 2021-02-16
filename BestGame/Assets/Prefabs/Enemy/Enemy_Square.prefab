@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6133050522750595417}
   - component: {fileID: 8338240967173581142}
   - component: {fileID: -7861901414362536956}
+  - component: {fileID: -3251277401246902381}
   m_Layer: 0
   m_Name: Enemy_Square
   m_TagString: Untagged
@@ -143,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f42c364632fe8d14d8d99be9a1841853, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  col: {fileID: 0}
   spriteRenderer: {fileID: 4257462709758054842}
   absorbedSprite: {fileID: 21300000, guid: 197fe2547d803f144ad92ee9426baa41, type: 3}
   killMe: {fileID: 4257462709758054820}
@@ -180,3 +182,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseHealth: 10
+  health: 0
+--- !u!114 &-3251277401246902381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4257462709758054843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d891c55a97601a64c830ef1b2c83762a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  rotateSpeed: 60
+  acceleration: 10
+  inputReaders:
+  - {fileID: 11400000, guid: 6facbdae87e512a428b9999ad2400a8b, type: 2}
+  - {fileID: 11400000, guid: 9649f6431c775824284d30068fc39001, type: 2}
+  projectile: {fileID: -2017639292753371620, guid: a0e2062ffc8e51847a21c752bfacad3c, type: 3}

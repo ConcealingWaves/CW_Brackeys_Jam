@@ -23,5 +23,6 @@ public class ShooterController : EntityController
         toSpawn.gameObject.layer = gameObject.layer;
         toSpawn.MyPool = pool;
         toSpawn.MyPoolTag = projectile.name;
+        toSpawn.Speed += MoveVector.magnitude;
     }
 }

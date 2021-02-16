@@ -4,13 +4,19 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
-public class Absorbable : MonoBehaviour
+[RequireComponent(typeof(Collider2D))]
+public class Absorbable : AbsorbBase
 {
+    private const float SMALL_MAGNITUDE = 0.3f;
+    
     private Absorber primaryAbsorber;
+    private AbsorbBase secondaryAbsorber;
     
     private Rigidbody2D rb;
-    public bool IsAbsorbed => primaryAbsorber != null;
+    [HideInInspector] public Collider2D col;
+    public override bool IsAbsorbed() => primaryAbsorber != null;
     
     private Sprite originalSprite;
     private string originalLayer;
@@ -19,13 +25,50 @@ public class Absorbable : MonoBehaviour
     [SerializeField] private Sprite absorbedSprite;
     [SerializeField] private Enemy killMe;
 
-    private void Awake()
+    private EntityController cont;
+
+    public Absorber PrimaryAbsorber
     {
+        get => primaryAbsorber;
+    }
+
+    public AbsorbBase SecondaryAbsorber
+    {
+        get => secondaryAbsorber;
+        set => secondaryAbsorber = value;
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
         rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
+        cont = GetComponent<EntityController>();
         SetRBValues(rb);
         originalLayer = LayerMask.LayerToName(gameObject.layer);
         originalSprite = spriteRenderer.sprite;
     }
+
+    private void Update()
+    {
+        if(secondaryAbsorber!=null && secondaryAbsorber.isActiveAndEnabled == false)
+            Breakaway();
+        if(rb.velocity.magnitude >= SMALL_MAGNITUDE)
+            Breakaway();
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+    }
+    
+    
+
 
     public void GetAbsorbed(Absorber absorber)
     {
@@ -36,18 +79,29 @@ public class Absorbable : MonoBehaviour
         spriteRenderer.sprite = absorbedSprite;
         killMe.enabled = false;
         primaryAbsorber = absorber;
+        cont.AllowedToMove = false;
     }
 
     public void Breakaway()
     {
+        print("nijiwo");
         gameObject.layer = LayerMask.NameToLayer(originalLayer);
-        rb.isKinematic = false;
-        rb.useFullKinematicContacts = true;
+        transform.SetParent(null);
+        //rb.isKinematic = false;
+        //rb.useFullKinematicContacts = true;
         //rb = gameObject.AddComponent<Rigidbody2D>();
-        SetRBValues(rb);
-        spriteRenderer.sprite = originalSprite;
-        killMe.enabled = true;
+        //SetRBValues(rb);
+        //spriteRenderer.sprite = originalSprite;
+        //killMe.enabled = true;
         primaryAbsorber = null;
+        if (secondaryAbsorber != null)
+        {
+            secondaryAbsorber.OnDetach -= Breakaway;
+            secondaryAbsorber = null;
+        }
+        RaiseDetachEvent();
+        cont.AllowedToMove = true;
+        enabled = false;
     }
 
     private void SetRBValues(Rigidbody2D r)
@@ -59,10 +113,14 @@ public class Absorbable : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         Absorbable absorbable = other.gameObject.GetComponent<Absorbable>();
-        if (IsAbsorbed && absorbable != null)
+        if (IsAbsorbed() && absorbable != null)
         {
             primaryAbsorber.AddToAbsorbedUnits(absorbable);
+            absorbable.SecondaryAbsorber = this;
+            absorbable.OnDetach += Breakaway;
         }
     }
+
+
     
 }

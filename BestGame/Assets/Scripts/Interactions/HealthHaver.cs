@@ -29,8 +29,8 @@ public class HealthHaver : MonoBehaviour, IDamageable
     
     private void Die()
     {
-        Destroy(gameObject); //replace with some death sequence
         OnDie?.Invoke(this);
+        gameObject.SetActive(false); //replace with some death sequence
     }
     
     public void TakeHit(float dmg)

@@ -21,6 +21,8 @@ public class EntityController : MonoBehaviour
     [Space(5)] 
     [SerializeField] private InputReader[] inputReaders;
 
+    public bool AllowedToMove;
+
     public Vector2 MoveVector
     {
         get => moveVector;
@@ -32,6 +34,7 @@ public class EntityController : MonoBehaviour
         col = GetComponent<Collider2D>();
         moveVector = Vector2.zero;
         targetMoveVector = Vector2.zero;
+        AllowedToMove = true;
     }
 
     private void Start()
@@ -81,7 +84,7 @@ public class EntityController : MonoBehaviour
 
     private void UpdateMoveVector()
     {
-        moveVector = Vector2.Lerp(moveVector, targetMoveVector,acceleration*Time.fixedDeltaTime);
+        moveVector = AllowedToMove?Vector2.Lerp(moveVector, targetMoveVector,acceleration*Time.fixedDeltaTime):Vector2.zero;
     }
 
     private void Move(Vector2 movementThisFrame)
@@ -96,6 +99,7 @@ public class EntityController : MonoBehaviour
 
     private void Rotate(float dir)
     {
+        if (!AllowedToMove) return;
         rb.MoveRotation(rb.rotation - dir*rotateSpeed*Time.fixedDeltaTime);
     }
 }
