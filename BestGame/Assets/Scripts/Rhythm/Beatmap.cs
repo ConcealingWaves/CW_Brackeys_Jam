@@ -5,14 +5,20 @@ using UnityEngine;
 
 public class Beatmap : MonoBehaviour
 {
+    public delegate void EndAction(Beatmap hoc);
+
+    public static event EndAction OnEnd;
+    
     [SerializeField] private float bpm;
     [SerializeField] private List<InstrumentLinePair> beatmapLines;
     [Space(5)] 
     [SerializeField] private bool playOnStart;
     private Dictionary<string, BeatmapLine> parts;
 
+    private bool ended;
     private void Awake()
     {
+        ended = false;
         parts = new Dictionary<string, BeatmapLine>();
         foreach (var ilp in beatmapLines)
         {
@@ -20,6 +26,16 @@ public class Beatmap : MonoBehaviour
             ilp.BeatmapLine.LineName = ilp.PartName;
             ilp.BeatmapLine.Bpm = bpm;
         }
+    }
+
+    private void OnEnable()
+    {
+        BeatmapLine.End += RaiseEndAction;
+    }
+    
+    private void OnDisable()
+    {
+        BeatmapLine.End -= RaiseEndAction;
     }
 
     private void Start()
@@ -45,6 +61,12 @@ public class Beatmap : MonoBehaviour
             line.StartRhythm();
         }
     }
+
+    private void RaiseEndAction(string lineEnded)
+    {
+        OnEnd?.Invoke(this);
+    }
+    
 }
 
 [System.Serializable]

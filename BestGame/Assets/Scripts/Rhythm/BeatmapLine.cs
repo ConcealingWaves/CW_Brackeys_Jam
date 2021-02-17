@@ -67,6 +67,9 @@ public class BeatmapLine : MonoBehaviour
         
         line = CommandsReader.Read(commandsFile);
         commands = LineStringToCommandList(Line);
+
+        Tick = null;
+        End = null;
     }
 
     private void OnEnable()

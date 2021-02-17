@@ -90,6 +90,7 @@ public class Absorbable : AbsorbBase
         gameObject.layer = LayerMask.NameToLayer(originalLayer);
         transform.SetParent(null);
         primaryAbsorber = null;
+        col.enabled = false;
         if (secondaryAbsorber != null)
         {
             secondaryAbsorber.OnDetach -= Breakaway;

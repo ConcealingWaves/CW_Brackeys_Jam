@@ -49,12 +49,14 @@ public class ScoreText : MonoBehaviour
 
     private void OnEnable()
     {
-        scoreToRead.OnValueChangedTo += SetScore;
+        if(scoreToRead!=null)
+            scoreToRead.OnValueChangedTo += SetScore;
     }
 
     private void OnDisable()
     {
-        scoreToRead.OnValueChangedTo -= SetScore;
+        if(scoreToRead!=null)
+            scoreToRead.OnValueChangedTo -= SetScore;
     }
 
     void Start()
