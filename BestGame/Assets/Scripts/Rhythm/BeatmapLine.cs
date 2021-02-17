@@ -67,9 +67,6 @@ public class BeatmapLine : MonoBehaviour
         
         line = CommandsReader.Read(commandsFile);
         commands = LineStringToCommandList(Line);
-
-        Tick = null;
-        End = null;
     }
 
     private void OnEnable()
@@ -86,7 +83,7 @@ public class BeatmapLine : MonoBehaviour
     private static List<float> LineStringToCommandList(string s)
     {
         string[] commandListButStrings = s.Split(' ');
-        List<float> toReturn = commandListButStrings.Select(float.Parse).ToList();
+        List<float> toReturn = commandListButStrings.Select(ToFloat).ToList();
         return toReturn;
     }
 
@@ -155,5 +152,23 @@ public class BeatmapLine : MonoBehaviour
     public void ActivateLine()
     {
         source.volume = initialVolume;
+    }
+
+    private static float ToFloat(string value)
+    {
+        if (value.Contains('/'))
+        {
+            String[] numDen = value.Split('/');
+            if (numDen[1] == "0") return 0; 
+            return float.Parse(numDen[0]) / float.Parse(numDen[1]);
+        }
+
+        return float.Parse(value);
+    }
+
+    public static void CancelEvents()
+    {
+        Tick = null;
+        End = null;
     }
 }

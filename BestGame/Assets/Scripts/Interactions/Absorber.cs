@@ -95,6 +95,7 @@ public class Absorber : AbsorbBase
         {
             ash.ShootersToAlternate.RemoveAll(a => a==null);
             ash.ShootersToAlternate.RemoveAll(a => a.transform.parent!=transform);
+            ash.ShootersToAlternate.RemoveAll(a => !a.gameObject.activeInHierarchy);
         }
     }
 

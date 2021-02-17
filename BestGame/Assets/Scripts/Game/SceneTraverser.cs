@@ -23,6 +23,7 @@ public class SceneTraverser : MonoBehaviour
 
     public void GoToScene(int to)
     {
+        BeatmapLine.CancelEvents(); //whatever
         SceneManager.LoadSceneAsync(to);
     }
 }
