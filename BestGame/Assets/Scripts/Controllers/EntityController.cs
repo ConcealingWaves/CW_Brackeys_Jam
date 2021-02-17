@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-[RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(Collider2D))]
 public class EntityController : MonoBehaviour
 {
     protected Rigidbody2D rb;
@@ -23,6 +21,7 @@ public class EntityController : MonoBehaviour
     [SerializeField] private InputReader[] inputReaders;
 
     public bool AllowedToMove;
+    public bool AllowedToShoot;
 
     public Vector2 MoveVector
     {
@@ -31,7 +30,7 @@ public class EntityController : MonoBehaviour
 
     public Vector2 ExternalMoveVector;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
@@ -40,33 +39,31 @@ public class EntityController : MonoBehaviour
         ExternalMoveVector = Vector2.zero;
         MoveSpeedFactor = 1;
         AllowedToMove = true;
+        AllowedToShoot = true;
     }
 
     private void Start()
     {
-        
+        foreach (var ir in inputReaders)
+            ir.Init(this);
     }
 
     private void OnEnable()
     {
         foreach (var ir in inputReaders)
-            ir.Enter();
-        foreach(var ir in inputReaders)
-            ir.OnShoot += ShootAction;
+            ir.Enter(this);
     }
 
     private void OnDisable()
     {
         foreach (var ir in inputReaders)
-            ir.Exit();
-        foreach(var ir in inputReaders)
-            ir.OnShoot -= ShootAction;
+            ir.Exit(this);
     }
 
     private void Update()
     {
         foreach(var ir in inputReaders)
-            ir.Tick();
+            ir.Tick(this);
     }
 
     private void FixedUpdate()
@@ -76,15 +73,19 @@ public class EntityController : MonoBehaviour
         Move(moveVector * Time.fixedDeltaTime);
     }
 
-    protected virtual void ShootAction()
+    public virtual void ShootAction()
     {
-        Debug.Log("Bam!");
+        if (!AllowedToShoot) return;
+        print("bam!");
     }
 
     private void ReadInputs()
     {
-        Thrust(inputReaders[0].ThrustEngaged);
-        Rotate(inputReaders[0].RotationInput);
+        if (inputReaders.Length > 0)
+        {
+            Thrust(inputReaders[0].ThrustEngaged);
+            Rotate(inputReaders[0].RotationInput);
+        }
     }
 
     private void UpdateMoveVector()
@@ -94,6 +95,7 @@ public class EntityController : MonoBehaviour
 
     private void Move(Vector2 movementThisFrame)
     {
+        if (rb == null) return;
         rb.MovePosition(rb.position + movementThisFrame);
     }
 
@@ -105,7 +107,7 @@ public class EntityController : MonoBehaviour
 
     private void Rotate(float dir)
     {
-        if (!AllowedToMove) return;
+        if (!AllowedToMove || rb == null) return;
         rb.MoveRotation(rb.rotation - dir*rotateSpeed*Time.fixedDeltaTime);
     }
 }

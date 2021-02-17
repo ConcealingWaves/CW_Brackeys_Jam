@@ -5,20 +5,22 @@ using UnityEngine;
 
 public abstract class InputReader : ScriptableObject
 {
-    public event Action OnShoot; 
-    
     private bool thrustEngaged;
     private float rotationInput;
 
-    public virtual void Enter()
-    {
-    }
-    
-    public virtual void Exit()
+    public virtual void Enter(EntityController cont)
     {
     }
 
-    public abstract void Tick();
+    public virtual void Init(EntityController cont)
+    {
+    }
+    
+    public virtual void Exit(EntityController cont)
+    {
+    }
+
+    public abstract void Tick(EntityController cont);
 
     public bool ThrustEngaged
     {
@@ -32,9 +34,9 @@ public abstract class InputReader : ScriptableObject
         protected set => rotationInput = value;
     }
 
-    protected void InvokeShoot()
+    protected void InvokeShoot(EntityController cont)
     {
-        OnShoot?.Invoke();
+        cont.ShootAction();
     }
 }
 

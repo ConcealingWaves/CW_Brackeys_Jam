@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class KeepMoving : InputReader
 {
-    public override void Tick()
+    public override void Tick(EntityController cont)
     {
         ThrustEngaged = true;
     }

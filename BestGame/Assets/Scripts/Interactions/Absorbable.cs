@@ -81,6 +81,7 @@ public class Absorbable : AbsorbBase
         killMe.enabled = false;
         primaryAbsorber = absorber;
         cont.AllowedToMove = false;
+        cont.AllowedToShoot = false;
     }
 
     public void Breakaway()

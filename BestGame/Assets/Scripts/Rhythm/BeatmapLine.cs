@@ -9,10 +9,10 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class BeatmapLine : MonoBehaviour
 {
-    public delegate void TickAction();
+    public delegate void TickAction(string line);
 
-    public event TickAction Tick;
-    public event TickAction End;
+    public static event TickAction Tick;
+    public static event TickAction End;
 
     public const float NEGLIGIBLE_VOLUME = 0.01f;
 
@@ -95,15 +95,15 @@ public class BeatmapLine : MonoBehaviour
             if (currentCommandIndex >= commands.Count || commands[currentCommandIndex] <= -1)
             {
                 StopRhythm();
-                End?.Invoke();
+                End?.Invoke(LineName);
             }
             else
                 SetNextTickTime();
-            Tick?.Invoke();
+            Tick?.Invoke(LineName);
         }
     }
 
-    private void DebugTick()
+    private void DebugTick(string ln)
     {
 //        Debug.Log($"Tick! (at {source.time})");
     }

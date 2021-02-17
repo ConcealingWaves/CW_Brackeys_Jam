@@ -9,6 +9,7 @@ public class ShooterController : EntityController
     [SerializeField] private Projectile projectile;
     private ObjectPool pool;
 
+
     private void Start()
     {
         pool = FindObjectOfType<ObjectPool>();
@@ -16,13 +17,25 @@ public class ShooterController : EntityController
             Debug.LogError("No object pool found! Please create one.");
     }
 
-    protected override void ShootAction()
+    public override void ShootAction()
+    {
+        if (!AllowedToShoot) return;
+        Shoot();
+    }
+
+    private void Shoot()
     {
         Projectile toSpawn = pool.Spawn(projectile.gameObject, projectile.name, transform.position, transform.rotation).GetComponent<Projectile>();
-        Physics2D.IgnoreCollision(toSpawn.col, col);
+        if(col!=null)
+            Physics2D.IgnoreCollision(toSpawn.col, col);
         toSpawn.gameObject.layer = gameObject.layer;
         toSpawn.MyPool = pool;
         toSpawn.MyPoolTag = projectile.name;
         toSpawn.Speed += MoveVector.magnitude;
+    }
+
+    public void InvokeShootAction()
+    {
+        Shoot();
     }
 }

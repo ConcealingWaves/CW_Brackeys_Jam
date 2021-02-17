@@ -8,10 +8,12 @@ public class HealthHaver : MonoBehaviour, IDamageable
     public delegate void HitAction(float d, HealthHaver h);
 
     public static event HitAction OnHit;
+    public event HitAction OnThisHit;
 
     public delegate void DieAction(HealthHaver d);
 
     public static event DieAction OnDie;
+    public event DieAction OnThisDie;
 
     [SerializeField] private float baseHealth;
     [SerializeField] private float health;
@@ -32,18 +34,30 @@ public class HealthHaver : MonoBehaviour, IDamageable
     
     private void Die()
     {
-        OnDie?.Invoke(this);
+        RaiseDeathEvents();
         gameObject.SetActive(false); //replace with some death sequence
     }
     
     public void TakeHit(float dmg)
     {
         Health -= dmg;
-        OnHit?.Invoke(dmg, this);
+        RaiseHitEvents(dmg);
         if (Health <= 0 && !isDead)
         {
             Die();
             isDead = true;
         }
+    }
+
+    private void RaiseHitEvents(float dmg)
+    {
+        OnHit?.Invoke(dmg, this);
+        OnThisHit?.Invoke(dmg, this);
+    }
+
+    private void RaiseDeathEvents()
+    {
+        OnDie?.Invoke(this);
+        OnThisDie?.Invoke(this);
     }
 }

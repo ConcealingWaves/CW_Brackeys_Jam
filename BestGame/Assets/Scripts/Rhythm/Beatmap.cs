@@ -17,6 +17,7 @@ public class Beatmap : MonoBehaviour
         foreach (var ilp in beatmapLines)
         {
             parts.Add(ilp.PartName, ilp.BeatmapLine);
+            ilp.BeatmapLine.LineName = ilp.PartName;
             ilp.BeatmapLine.Bpm = bpm;
         }
     }

@@ -1,28 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 [CreateAssetMenu]
 public class RhythmInputReader : InputReader
 {
     [SerializeField] private string part;
-    private Beatmap map;
-    private BeatmapLine line;
 
-    public override void Enter()
+    private BeatmapLine.TickAction currentDelegate;
+
+    public override void Enter(EntityController cont)
     {
-        map = FindObjectOfType<Beatmap>();
-        if (map != null)
-            line = map.GetPart(part);
-        line.Tick += InvokeShoot;
+        currentDelegate = s => CheckInvokeShoot(s,cont);
+        BeatmapLine.Tick += currentDelegate;
     }
 
-    public override void Exit()
+    public override void Exit(EntityController cont)
     {
-        line.Tick -= InvokeShoot;
+        BeatmapLine.Tick -= currentDelegate;
     }
-    public override void Tick()
+    public override void Tick(EntityController cont)
     {
         
+    }
+
+    private void CheckInvokeShoot(string tickedLine, EntityController cont)
+    {
+        if(part == tickedLine)
+            InvokeShoot(cont);
     }
 }
