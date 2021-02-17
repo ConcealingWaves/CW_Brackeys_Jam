@@ -10,6 +10,11 @@ public class RhythmInputReader : InputReader
 
     private BeatmapLine.TickAction currentDelegate;
 
+    public string Part
+    {
+        get => part;
+    }
+
     public override void Enter(EntityController cont)
     {
         currentDelegate = s => CheckInvokeShoot(s,cont);

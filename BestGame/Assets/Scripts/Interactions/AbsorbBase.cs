@@ -41,7 +41,6 @@ public abstract class AbsorbBase : MonoBehaviour
     {
         if (check == hh && IsAbsorbed())
         {
-            print("s");
             OnDetach?.Invoke();
             RaiseChangeEvent();
         }

@@ -18,7 +18,7 @@ public class EntityController : MonoBehaviour
     [SerializeField] private float rotateSpeed;
     [SerializeField] private float acceleration;
     [Space(5)] 
-    [SerializeField] private InputReader[] inputReaders;
+    [SerializeField] private List<InputReader> inputReaders;
 
     public bool AllowedToMove;
     public bool AllowedToShoot;
@@ -81,7 +81,7 @@ public class EntityController : MonoBehaviour
 
     private void ReadInputs()
     {
-        if (inputReaders.Length > 0)
+        if (inputReaders.Count > 0)
         {
             Thrust(inputReaders[0].ThrustEngaged);
             Rotate(inputReaders[0].RotationInput);
@@ -110,4 +110,19 @@ public class EntityController : MonoBehaviour
         if (!AllowedToMove || rb == null) return;
         rb.MoveRotation(rb.rotation - dir*rotateSpeed*Time.fixedDeltaTime);
     }
+
+    public string GetRhythmPart()
+    {
+        foreach (var v in inputReaders)
+        {
+            if (v is RhythmInputReader)
+            {
+                RhythmInputReader rhythm = (RhythmInputReader) v;
+                return rhythm.Part;
+            }
+        }
+        Debug.LogWarning("Didn't find a rhythm part on object", this);
+        return "";
+    }
+    
 }

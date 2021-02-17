@@ -23,6 +23,9 @@ public class Absorber : AbsorbBase
     [Range(0.0f,0.99f)]
     [SerializeField] private float memberWeight;
 
+    [SerializeField] private List<AlternationNamePair> alternations;
+    private Dictionary<String, AlternatingShooters> getAlternator;
+
     public int NumberAbsorbed
     {
         get => Mathf.Max(0, numberAbsorbed);
@@ -40,18 +43,26 @@ public class Absorber : AbsorbBase
         col = GetComponent<Collider2D>();
         cont = GetComponent<EntityController>();
         numberAbsorbed = 0;
+
+        getAlternator = new Dictionary<string, AlternatingShooters>();
+        foreach (var anp in alternations)
+        {
+            getAlternator.Add(anp.name, anp.alternator);
+        }
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
         OnChangeAbsorbNumber += CalculateAbsorbedUnits;
+        OnChangeAbsorbNumber += CheckAlternation;
     }
 
     protected override void OnDisable()
     {
         base.OnDisable();
         OnChangeAbsorbNumber -= CalculateAbsorbedUnits;
+        OnChangeAbsorbNumber -= CheckAlternation;
     }
 
     protected override void Update()
@@ -73,10 +84,19 @@ public class Absorber : AbsorbBase
     {
         a.transform.parent = transform;
         a.GetAbsorbed(this);
+        getAlternator[a.GetRhythmPart()].AddShooter(a.cont);
         OnAbsorb?.Invoke(this, a);
         RaiseChangeEvent();
     }
-    
+
+    private void CheckAlternation()
+    {
+        foreach (var ash in getAlternator.Values)
+        {
+            ash.ShootersToAlternate.RemoveAll(a => a==null);
+            ash.ShootersToAlternate.RemoveAll(a => a.transform.parent!=transform);
+        }
+    }
 
     public override bool IsAbsorbed() => true;
 
@@ -84,4 +104,11 @@ public class Absorber : AbsorbBase
     {
         numberAbsorbed = GetComponentsInChildren<Absorbable>().Count(k => k.enabled);
     }
+}
+
+[Serializable]
+public class AlternationNamePair
+{
+    public AlternatingShooters alternator;
+    public string name;
 }

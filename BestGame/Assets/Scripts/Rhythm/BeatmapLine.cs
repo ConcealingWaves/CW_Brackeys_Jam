@@ -92,14 +92,13 @@ public class BeatmapLine : MonoBehaviour
         if (source.time >= nextTick)
         {
             currentCommandIndex++;
-            if (currentCommandIndex >= commands.Count || commands[currentCommandIndex] <= -1)
+            if (currentCommandIndex >= commands.Count)
             {
                 StopRhythm();
                 End?.Invoke(LineName);
             }
             else
                 SetNextTickTime();
-            Tick?.Invoke(LineName);
         }
     }
 
@@ -111,7 +110,9 @@ public class BeatmapLine : MonoBehaviour
     private void SetNextTickTime()
     {
         lastTick = nextTick;
-        nextTick += MusicUtility.BeatsToSeconds(commands[currentCommandIndex], bpm);
+        nextTick += MusicUtility.BeatsToSeconds(Mathf.Abs(commands[currentCommandIndex]), bpm);
+        if(commands[currentCommandIndex] > 0)
+            Tick?.Invoke(LineName);
     }
     
     public void StartRhythm()

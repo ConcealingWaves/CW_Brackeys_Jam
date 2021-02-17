@@ -21,9 +21,18 @@ public class AlternatingShooters : EntityController
 
     public override void ShootAction()
     {
-        if (!AllowedToShoot) return;
-        print(currentAlternation);
+        if (!AllowedToShoot || shootersToAlternate.Count == 0) return;
         shootersToAlternate[currentAlternation % shootersToAlternate.Count].InvokeShootAction();
         currentAlternation++;
+    }
+
+    public void AddShooter(ShooterController s)
+    {
+        shootersToAlternate.Add(s);
+    }
+
+    public void RemoveShooter(ShooterController s)
+    {
+        shootersToAlternate.Remove(s);
     }
 }
