@@ -12,6 +12,12 @@ public class WaveSpawner : MonoBehaviour
     public Transform TopBoundary;
     public Transform BottomBoundary;
     public Transform LeftBoundary;
+    public Transform RightBoundary;
+
+    public Transform TopDestroyBoundary;
+    public Transform BottomDestroyBoundary;
+    public Transform LeftDestroyBoundary;
+    public Transform RightDestroyBoundary;
 
     [HideInInspector]
     public float GenerateInterval =0.2f;   //Time interval of enemy generation
@@ -26,6 +32,11 @@ public class WaveSpawner : MonoBehaviour
     private bool isEnd = false;
     private bool isPause = false;
     private List<float> rateList;
+
+    enum DIRECTION{
+        UP,DOWN,LEFT,RIGHT
+    };
+
 
     #endregion
 
@@ -129,16 +140,42 @@ public class WaveSpawner : MonoBehaviour
         GameObject newEnemy=Instantiate(enemyPrefabs[enemyType]);
         newEnemy.transform.SetParent(transform);
 
+        DIRECTION dirIndex = (DIRECTION)Random.Range(0, 4);
+        Debug.Log(dirIndex);
+        Vector2 enemyPos =new Vector2(0,0);
+
+        switch(dirIndex)
+        {
+            case DIRECTION.UP:
+                enemyPos.y=BottomBoundary.position.y;
+                enemyPos.x=Random.Range(LeftBoundary.position.x,RightBoundary.position.x);
+                break;
+            case DIRECTION.DOWN:
+                enemyPos.y=TopBoundary.position.y;
+                enemyPos.x=Random.Range(LeftBoundary.position.x,RightBoundary.position.x);
+                break;
+            case DIRECTION.LEFT:
+                enemyPos.x=RightBoundary.position.x;
+                enemyPos.y=Random.Range(BottomBoundary.position.y,TopBoundary.position.y);
+                break;
+            case DIRECTION.RIGHT:
+                enemyPos.x=LeftBoundary.position.x;
+                enemyPos.y=Random.Range(BottomBoundary.position.y,TopBoundary.position.y);
+                break;
+        }
+
         //Randomly initialize the position of the enemy
-        float posY=Random.Range(BottomBoundary.position.y,TopBoundary.position.y);
-        Vector3 pos = transform.position;
-        pos.y = posY;
-        newEnemy.transform.position = pos;
+        newEnemy.transform.position = enemyPos;
         newEnemy.transform.rotation = Quaternion.Euler(0,0,90);
+
+
 
         //initialize variable of enemy script
         Enemy enemyScript = newEnemy.GetComponent<Enemy>();
-        enemyScript.destroyPos = LeftBoundary;
+        enemyScript.TopDestroyBoundary = TopDestroyBoundary.position;
+        enemyScript.BottomDestroyBoundary = BottomDestroyBoundary.position;
+        enemyScript.LeftDestroyBoundary = LeftDestroyBoundary.position;
+        enemyScript.RightDestroyBoundary = RightDestroyBoundary.position;
 
     }
     #endregion

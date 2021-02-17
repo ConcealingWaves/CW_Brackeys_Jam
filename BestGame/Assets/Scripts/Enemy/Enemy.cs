@@ -14,7 +14,13 @@ public class Enemy : MonoBehaviour
     public float fireInterval = 0.2f;
     public float bulletSpeed = 10.0f;
     [HideInInspector]
-    public Transform destroyPos;  //The boundary where enemy wiil destroy
+    public Vector2 TopDestroyBoundary;
+    [HideInInspector]
+    public Vector2 BottomDestroyBoundary;
+    [HideInInspector]
+    public Vector2 LeftDestroyBoundary;
+    [HideInInspector]
+    public Vector2 RightDestroyBoundary;
 
     [SerializeField] private float value = 100;
 
@@ -33,12 +39,11 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(destroyPos!=null)
+        Vector2 pos = transform.position;
+        if(pos.x<LeftDestroyBoundary.x||pos.x>RightDestroyBoundary.x
+        ||pos.y<BottomDestroyBoundary.y||pos.y>TopDestroyBoundary.y)
         {
-            if(transform.position.x<=destroyPos.position.x)
-            {
-                GameObject.Destroy(gameObject);
-            }
+            GameObject.Destroy(gameObject);
         }
     }
     public void GamePause()
