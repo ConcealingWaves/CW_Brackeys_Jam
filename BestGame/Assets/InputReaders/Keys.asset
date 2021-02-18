@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62ef78428918c3a479569f78361dd80b, type: 3}
-  m_Name: Melody Reader
+  m_Name: Keys
   m_EditorClassIdentifier: 
-  part: Melody
+  part: Keys
