@@ -7,7 +7,7 @@ using UnityEngine.PlayerLoop;
 public class EntityController : MonoBehaviour
 {
     protected Rigidbody2D rb;
-    protected Collider2D col;
+    [HideInInspector] public Collider2D col;
 
     private Vector2 moveVector;
     private Vector2 targetMoveVector;
@@ -28,7 +28,7 @@ public class EntityController : MonoBehaviour
         get => moveVector;
     }
 
-    public Vector2 ExternalMoveVector;
+    [HideInInspector] public Vector2 ExternalMoveVector;
 
     protected virtual void Awake()
     {
