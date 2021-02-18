@@ -36,7 +36,8 @@ public abstract class InputReader : ScriptableObject
 
     protected void InvokeShoot(EntityController cont)
     {
-        cont.ShootAction();
+        if(cont!=null)
+            cont.ShootAction();
     }
 }
 

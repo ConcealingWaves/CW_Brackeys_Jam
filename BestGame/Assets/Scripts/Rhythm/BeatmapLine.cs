@@ -163,7 +163,13 @@ public class BeatmapLine : MonoBehaviour
             if (numDen[1] == "0") return 0; 
             return float.Parse(numDen[0]) / float.Parse(numDen[1]);
         }
-        return float.Parse(value);
+
+        if (float.TryParse(value, out var toReturn))
+        {
+            return toReturn;
+        }
+
+        return 0;
     }
 
     public static void CancelEvents()
