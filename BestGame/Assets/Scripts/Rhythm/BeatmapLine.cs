@@ -156,6 +156,7 @@ public class BeatmapLine : MonoBehaviour
 
     private static float ToFloat(string value)
     {
+        if (value == "") return 0;
         if (value.Contains('/'))
         {
             String[] numDen = value.Split('/');
