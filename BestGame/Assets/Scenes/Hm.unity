@@ -1851,8 +1851,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3251277401246902381, guid: 07605a72ea6f0624c8a2979275949f35, type: 3}
       propertyPath: inputReaders.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -3251277401246902381, guid: 07605a72ea6f0624c8a2979275949f35, type: 3}
+      propertyPath: inputReaders.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: f3cb1f9bbe08d834a9cace8065f4f948, type: 2}
+    - target: {fileID: -3251277401246902381, guid: 07605a72ea6f0624c8a2979275949f35, type: 3}
+      propertyPath: inputReaders.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3253216efd27c194db8942a042c9cc53, type: 2}
     - target: {fileID: -3251277401246902381, guid: 07605a72ea6f0624c8a2979275949f35, type: 3}
       propertyPath: inputReaders.Array.data[3]
       value: 
