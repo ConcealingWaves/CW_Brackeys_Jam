@@ -7,6 +7,8 @@ public class AlternatingShooters : EntityController
     [SerializeField] private List<ShooterController> shootersToAlternate;
     private int currentAlternation;
 
+    public int Count => shootersToAlternate.Count;
+
     public List<ShooterController> ShootersToAlternate
     {
         get => shootersToAlternate;
@@ -21,7 +23,7 @@ public class AlternatingShooters : EntityController
 
     public override void ShootAction()
     {
-        if (!AllowedToShoot || shootersToAlternate.Count == 0) return;
+        if (!AllowedToShoot || shootersToAlternate.Count == 0){ return;}
         shootersToAlternate[currentAlternation % shootersToAlternate.Count].InvokeShootAction();
         currentAlternation++;
     }

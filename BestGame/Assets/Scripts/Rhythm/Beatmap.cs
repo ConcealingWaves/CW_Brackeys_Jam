@@ -50,7 +50,7 @@ public class Beatmap : MonoBehaviour
     {
         if (parts.ContainsKey(s)) 
             return parts[s]; 
-        Debug.LogWarning($"I have no part named {s}, null value returned.");
+        //Debug.LogWarning($"I have no part named {s}, null value returned.");
         return null;
     }
 

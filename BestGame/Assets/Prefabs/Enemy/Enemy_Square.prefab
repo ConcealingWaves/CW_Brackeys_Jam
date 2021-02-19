@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8338240967173581142}
   - component: {fileID: -7861901414362536956}
   - component: {fileID: -3251277401246902381}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy_Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,6 +110,7 @@ MonoBehaviour:
   LeftDestroyBoundary: {x: 0, y: 0}
   RightDestroyBoundary: {x: 0, y: 0}
   value: 100
+  bounded: 0
 --- !u!61 &-6547535253924796393
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -200,6 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d891c55a97601a64c830ef1b2c83762a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  col: {fileID: 0}
   moveSpeed: 5
   MoveSpeedFactor: 0
   rotateSpeed: 60
@@ -207,7 +209,12 @@ MonoBehaviour:
   inputReaders:
   - {fileID: 11400000, guid: 6facbdae87e512a428b9999ad2400a8b, type: 2}
   - {fileID: 11400000, guid: f408e0536a9b9fb49bb36b4855246e8a, type: 2}
+  - {fileID: 11400000, guid: 430a19df88495ea47811474c82922861, type: 2}
+  RotationalInput: 0
+  MovementInput: 0
   AllowedToMove: 0
   AllowedToShoot: 0
   ExternalMoveVector: {x: 0, y: 0}
+  timeSinceLastRotateStart: 0
+  rotateRestTime: 0
   projectile: {fileID: -2017639292753371620, guid: a0e2062ffc8e51847a21c752bfacad3c, type: 3}

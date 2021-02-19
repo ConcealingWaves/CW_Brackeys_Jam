@@ -147,7 +147,6 @@ public class WaveSpawner : MonoBehaviour
         newEnemy.transform.SetParent(transform);
 
         DIRECTION dirIndex = (DIRECTION)Random.Range(0, 4);
-        Debug.Log(dirIndex);
         Vector2 enemyPos =new Vector2(0,0);
 
         switch(dirIndex)

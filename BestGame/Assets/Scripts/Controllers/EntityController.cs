@@ -26,6 +26,8 @@ public class EntityController : MonoBehaviour
     public bool AllowedToMove;
     public bool AllowedToShoot;
 
+    public float InternalTimer;
+
     public Vector2 MoveVector
     {
         get => moveVector;
@@ -74,6 +76,7 @@ public class EntityController : MonoBehaviour
         timeSinceLastRotateStart += Time.fixedDeltaTime;
         ReadInputs();
         UpdateMoveVector();
+        InternalTimer += Time.fixedDeltaTime;
         Move(moveVector * Time.fixedDeltaTime);
     }
 

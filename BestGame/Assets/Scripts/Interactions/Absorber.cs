@@ -26,6 +26,8 @@ public class Absorber : AbsorbBase
     [SerializeField] private List<AlternationNamePair> alternations;
     private Dictionary<String, AlternatingShooters> getAlternator;
 
+    [SerializeField] private Beatmap beatmapToAdjust;
+
     public int NumberAbsorbed
     {
         get => Mathf.Max(0, numberAbsorbed);
@@ -97,6 +99,7 @@ public class Absorber : AbsorbBase
             ash.ShootersToAlternate.RemoveAll(a => a.transform.parent!=transform);
             ash.ShootersToAlternate.RemoveAll(a => !a.gameObject.activeInHierarchy);
         }
+        AdjustBeatmapLines();
     }
 
     public override bool IsAbsorbed() => true;
@@ -104,6 +107,19 @@ public class Absorber : AbsorbBase
     private void CalculateAbsorbedUnits()
     {
         numberAbsorbed = GetComponentsInChildren<Absorbable>().Count(k => k.enabled);
+    }
+
+    private void AdjustBeatmapLines()
+    {
+        foreach (var part in getAlternator.Keys)
+        {
+            BeatmapLine line = beatmapToAdjust.GetPart(part);
+            if (line == null) continue;
+            if(getAlternator[part].Count == 0)
+                line.DeactivateLine();
+            else
+                line.ActivateLine();
+        }
     }
 }
 

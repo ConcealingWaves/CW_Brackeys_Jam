@@ -69,6 +69,11 @@ public class BeatmapLine : MonoBehaviour
         commands = LineStringToCommandList(Line);
     }
 
+    private void Start()
+    {
+        DeactivateLine();
+    }
+
     private void OnEnable()
     {
         Tick += DebugTick;

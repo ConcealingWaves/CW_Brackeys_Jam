@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -4291079245428776343}
   - component: {fileID: -1136911898058772324}
   - component: {fileID: 7513737226032903718}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy_Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,6 +110,7 @@ MonoBehaviour:
   LeftDestroyBoundary: {x: 0, y: 0}
   RightDestroyBoundary: {x: 0, y: 0}
   value: 100
+  bounded: 0
 --- !u!58 &-4991724685328377584
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -142,6 +143,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 6611946406360554830}
   absorbedSprite: {fileID: 21300000, guid: 197fe2547d803f144ad92ee9426baa41, type: 3}
   killMe: {fileID: 6611946406360554822}
+  cont: {fileID: 0}
 --- !u!50 &-4291079245428776343
 Rigidbody2D:
   serializedVersion: 4
@@ -189,6 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d891c55a97601a64c830ef1b2c83762a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  col: {fileID: 0}
   moveSpeed: 5
   MoveSpeedFactor: 0
   rotateSpeed: 60
@@ -196,7 +199,12 @@ MonoBehaviour:
   inputReaders:
   - {fileID: 11400000, guid: 6facbdae87e512a428b9999ad2400a8b, type: 2}
   - {fileID: 11400000, guid: 9649f6431c775824284d30068fc39001, type: 2}
+  - {fileID: 11400000, guid: 430a19df88495ea47811474c82922861, type: 2}
+  RotationalInput: 0
+  MovementInput: 0
   AllowedToMove: 0
   AllowedToShoot: 0
   ExternalMoveVector: {x: 0, y: 0}
+  timeSinceLastRotateStart: 0
+  rotateRestTime: 0
   projectile: {fileID: -2017639292753371620, guid: a0e2062ffc8e51847a21c752bfacad3c, type: 3}
