@@ -19,6 +19,8 @@ public class BreastStroke : InputReader
 
     public override void Tick(EntityController cont)
     {
-        cont.MovementInput = cont.InternalTimer % (onTime + offTime) < onTime;
+        float realOnTime = MusicUtility.BeatsToSeconds(onTime,115); //i dont care (the solution is to have cont reference the beatmap and read that but we only have 1 song for this game jam so whatever)
+        float realOffTime = MusicUtility.BeatsToSeconds(offTime, 115);
+        cont.MovementInput = cont.InternalTimer % (realOnTime + realOffTime) < realOnTime;
     }
 }

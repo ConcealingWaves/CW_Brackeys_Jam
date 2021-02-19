@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class AlternatingShooters : EntityController
 {
-    [SerializeField] private List<ShooterController> shootersToAlternate;
+    [SerializeField] private List<EntityController> shootersToAlternate;
     private int currentAlternation;
 
     public int Count => shootersToAlternate.Count;
 
-    public List<ShooterController> ShootersToAlternate
+    public List<EntityController> ShootersToAlternate
     {
         get => shootersToAlternate;
         set => shootersToAlternate = value;
@@ -24,16 +24,21 @@ public class AlternatingShooters : EntityController
     public override void ShootAction()
     {
         if (!AllowedToShoot || shootersToAlternate.Count == 0){ return;}
+        InvokeShootAction();
+    }
+
+    public override void InvokeShootAction()
+    {
         shootersToAlternate[currentAlternation % shootersToAlternate.Count].InvokeShootAction();
         currentAlternation++;
     }
 
-    public void AddShooter(ShooterController s)
+    public void AddShooter(EntityController s)
     {
         shootersToAlternate.Add(s);
     }
 
-    public void RemoveShooter(ShooterController s)
+    public void RemoveShooter(EntityController s)
     {
         shootersToAlternate.Remove(s);
     }

@@ -13,14 +13,14 @@ public class EntityController : MonoBehaviour
     private Vector2 targetMoveVector;
 
     [SerializeField] private float moveSpeed;
-    public float MoveSpeedFactor;
+    [HideInInspector] public float MoveSpeedFactor;
     [Tooltip("Angles per second")]
     [SerializeField] private float rotateSpeed;
     [SerializeField] private float acceleration;
     [Space(5)] 
     [SerializeField] private List<InputReader> inputReaders;
 
-     public float RotationalInput;
+    [HideInInspector] public float RotationalInput;
     [HideInInspector] public bool MovementInput;
 
     public bool AllowedToMove;
@@ -144,4 +144,6 @@ public class EntityController : MonoBehaviour
         RotationalInput = 0;
         
     }
+
+    public virtual void InvokeShootAction(){}
 }

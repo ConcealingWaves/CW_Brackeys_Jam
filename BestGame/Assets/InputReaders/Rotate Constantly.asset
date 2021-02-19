@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cff615dad247594ab65959426b89ece, type: 3}
-  m_Name: Fishy
+  m_Script: {fileID: 11500000, guid: 7ec1ee32c596c8e4ba1289ac2f657701, type: 3}
+  m_Name: Rotate Constantly
   m_EditorClassIdentifier: 
-  onTime: 3
-  offTime: 1
+  rotateRestMin: 1.4
+  rotateRestMax: 5.5
+  rotateFrequencyMin: 0.808
+  rotateFrequencyMax: 1

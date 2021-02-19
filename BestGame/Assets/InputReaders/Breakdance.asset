@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4cff615dad247594ab65959426b89ece, type: 3}
-  m_Name: Fishy
+  m_Name: Breakdance
   m_EditorClassIdentifier: 
-  onTime: 3
-  offTime: 1
+  onTime: 0.5
+  offTime: 0.5

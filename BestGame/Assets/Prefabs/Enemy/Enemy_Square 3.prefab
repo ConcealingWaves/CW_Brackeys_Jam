@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -7861901414362536956}
   - component: {fileID: -3251277401246902381}
   m_Layer: 7
-  m_Name: Enemy_Square
+  m_Name: Enemy_Square 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,7 +109,7 @@ MonoBehaviour:
   BottomDestroyBoundary: {x: 0, y: 0}
   LeftDestroyBoundary: {x: 0, y: 0}
   RightDestroyBoundary: {x: 0, y: 0}
-  value: 5000
+  value: 250
   bounded: 0
 --- !u!61 &-6547535253924796393
 BoxCollider2D:
@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12dbf57e1a01ecd4e9edb30a761409fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseHealth: 10
+  baseHealth: 14
   health: 0
 --- !u!114 &-3251277401246902381
 MonoBehaviour:
@@ -202,14 +202,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   col: {fileID: 0}
-  moveSpeed: 45
+  moveSpeed: 9.2
   MoveSpeedFactor: 0
-  rotateSpeed: 60
-  acceleration: 10
+  rotateSpeed: 90
+  acceleration: 20
   inputReaders:
-  - {fileID: 11400000, guid: 3253216efd27c194db8942a042c9cc53, type: 2}
-  - {fileID: 11400000, guid: 0a44d22b16be3984c9f165a738aa38b7, type: 2}
-  - {fileID: 11400000, guid: 6facbdae87e512a428b9999ad2400a8b, type: 2}
+  - {fileID: 11400000, guid: 597702805283e484a926793ee750f11f, type: 2}
+  - {fileID: 11400000, guid: da6b31e64a0925a4bb1b6c653b0cbcf7, type: 2}
+  - {fileID: 11400000, guid: 430a19df88495ea47811474c82922861, type: 2}
   RotationalInput: 0
   MovementInput: 0
   AllowedToMove: 0

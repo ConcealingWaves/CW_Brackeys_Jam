@@ -34,7 +34,7 @@ public class ShooterController : EntityController
         toSpawn.Speed += MoveVector.magnitude;
     }
 
-    public void InvokeShootAction()
+    public override void InvokeShootAction()
     {
         Shoot();
     }

@@ -7,7 +7,6 @@ using UnityEngine;
 using UnityEngine.PlayerLoop;
 
 [RequireComponent(typeof(Collider2D))]
-[RequireComponent(typeof(ShooterController))]
 public class Absorbable : AbsorbBase
 {
     private const float SMALL_MAGNITUDE = 0.3f;
@@ -26,7 +25,7 @@ public class Absorbable : AbsorbBase
     [SerializeField] private Sprite absorbedSprite;
     [SerializeField] private Enemy killMe;
 
-    public ShooterController cont;
+    public EntityController cont;
 
     public Absorber PrimaryAbsorber
     {
@@ -44,7 +43,7 @@ public class Absorbable : AbsorbBase
         base.Awake();
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
-        cont = GetComponent<ShooterController>();
+        cont = GetComponent<EntityController>();
         SetRBValues(rb);
         originalLayer = LayerMask.LayerToName(gameObject.layer);
         originalSprite = spriteRenderer.sprite;
