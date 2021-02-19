@@ -138,7 +138,9 @@ public class WaveSpawner : MonoBehaviour
         return type;
 
     }
-
+    
+    [Range(0,90)]
+    [SerializeField] private float rotateVariation;
     void generateEnemy(int enemyType)   //generate an enemy and initialize it
     {
         GameObject newEnemy=Instantiate(enemyPrefabs[enemyType]);
@@ -171,7 +173,7 @@ public class WaveSpawner : MonoBehaviour
         //Randomly initialize the position of the enemy
         newEnemy.transform.position = enemyPos;
         Vector3 diffVector = center.position - newEnemy.transform.position;
-        newEnemy.transform.rotation = Quaternion.Euler(0,0,Mathf.Atan2(diffVector.y, diffVector.x));
+        newEnemy.transform.rotation = Quaternion.Euler(0,0,rotateVariation*Random.Range(-1.0f,1.0f)-Mathf.Rad2Deg*Mathf.Atan2(diffVector.x, diffVector.y));
 
 
 

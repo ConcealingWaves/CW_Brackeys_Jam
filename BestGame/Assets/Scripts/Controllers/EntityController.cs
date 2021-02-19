@@ -71,6 +71,7 @@ public class EntityController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        timeSinceLastRotateStart += Time.fixedDeltaTime;
         ReadInputs();
         UpdateMoveVector();
         Move(moveVector * Time.fixedDeltaTime);
@@ -124,5 +125,20 @@ public class EntityController : MonoBehaviour
         Debug.LogWarning("Didn't find a rhythm part on object", this);
         return "";
     }
-    
+
+    public void RotateForSeconds(float dir, float s)
+    {
+        StartCoroutine(RotateSequence(dir, s));
+    }
+
+    [HideInInspector] public float timeSinceLastRotateStart;
+    [HideInInspector] public float rotateRestTime;
+    IEnumerator RotateSequence(float dir, float s)
+    {
+        timeSinceLastRotateStart = 0;
+        RotationalInput = dir;
+        yield return new WaitForSeconds(s);
+        RotationalInput = 0;
+        
+    }
 }

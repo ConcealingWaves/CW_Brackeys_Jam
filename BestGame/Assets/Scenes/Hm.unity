@@ -444,6 +444,7 @@ MonoBehaviour:
   center: {fileID: 991945235}
   GenerateInterval: 1
   waveLevel: 0
+  rotateVariation: 46
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,6 +857,8 @@ MonoBehaviour:
   AllowedToMove: 0
   AllowedToShoot: 0
   ExternalMoveVector: {x: 0, y: 0}
+  timeSinceLastRotateStart: 0
+  rotateRestTime: 0
   shootersToAlternate: []
 --- !u!1 &686324975
 GameObject:
@@ -1034,6 +1037,8 @@ MonoBehaviour:
   AllowedToMove: 0
   AllowedToShoot: 0
   ExternalMoveVector: {x: 0, y: 0}
+  timeSinceLastRotateStart: 0
+  rotateRestTime: 0
   shootersToAlternate: []
 --- !u!4 &826562990
 Transform:
@@ -1553,6 +1558,8 @@ MonoBehaviour:
   AllowedToMove: 0
   AllowedToShoot: 0
   ExternalMoveVector: {x: 0, y: 0}
+  timeSinceLastRotateStart: 0
+  rotateRestTime: 0
   shootersToAlternate: []
 --- !u!1 &1123445649
 GameObject:
@@ -1656,6 +1663,8 @@ MonoBehaviour:
   AllowedToMove: 0
   AllowedToShoot: 0
   ExternalMoveVector: {x: 0, y: 0}
+  timeSinceLastRotateStart: 0
+  rotateRestTime: 0
   shootersToAlternate: []
 --- !u!114 &1285947075 stripped
 MonoBehaviour:
@@ -1719,6 +1728,8 @@ MonoBehaviour:
   AllowedToMove: 0
   AllowedToShoot: 0
   ExternalMoveVector: {x: 0, y: 0}
+  timeSinceLastRotateStart: 0
+  rotateRestTime: 0
   shootersToAlternate: []
 --- !u!4 &1322666973
 Transform:
@@ -1788,6 +1799,8 @@ MonoBehaviour:
   AllowedToMove: 0
   AllowedToShoot: 0
   ExternalMoveVector: {x: 0, y: 0}
+  timeSinceLastRotateStart: 0
+  rotateRestTime: 0
   shootersToAlternate: []
 --- !u!1 &1339097085
 GameObject:
@@ -2299,6 +2312,8 @@ MonoBehaviour:
   AllowedToMove: 0
   AllowedToShoot: 0
   ExternalMoveVector: {x: 0, y: 0}
+  timeSinceLastRotateStart: 0
+  rotateRestTime: 0
   shootersToAlternate: []
 --- !u!1001 &1819514402
 PrefabInstance:
@@ -2436,6 +2451,8 @@ MonoBehaviour:
   AllowedToMove: 0
   AllowedToShoot: 0
   ExternalMoveVector: {x: 0, y: 0}
+  timeSinceLastRotateStart: 0
+  rotateRestTime: 0
   shootersToAlternate: []
 --- !u!1 &1994230177
 GameObject:
@@ -2478,6 +2495,8 @@ MonoBehaviour:
   AllowedToMove: 0
   AllowedToShoot: 0
   ExternalMoveVector: {x: 0, y: 0}
+  timeSinceLastRotateStart: 0
+  rotateRestTime: 0
   externalShooters:
   - {fileID: 571871916}
   - {fileID: 2143807447}
