@@ -5,9 +5,6 @@ using UnityEngine;
 
 public abstract class InputReader : ScriptableObject
 {
-    private bool thrustEngaged;
-    private float rotationInput;
-
     public virtual void Enter(EntityController cont)
     {
     }
@@ -21,18 +18,7 @@ public abstract class InputReader : ScriptableObject
     }
 
     public abstract void Tick(EntityController cont);
-
-    public bool ThrustEngaged
-    {
-        get => thrustEngaged;
-        protected set => thrustEngaged = value;
-    }
-
-    public float RotationInput
-    {
-        get => rotationInput;
-        protected set => rotationInput = value;
-    }
+    
 
     protected void InvokeShoot(EntityController cont)
     {

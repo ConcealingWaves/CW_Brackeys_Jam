@@ -27,6 +27,8 @@ public class Enemy : MonoBehaviour
     public float Value => value;
 
     private bool isPause = false;
+
+    public bool bounded = false;
     void Awake() {
         //InvokeRepeating("fire", 0 ,fireInterval);
         col = GetComponent<Collider2D>();
@@ -40,8 +42,8 @@ public class Enemy : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 pos = transform.position;
-        if(pos.x<LeftDestroyBoundary.x||pos.x>RightDestroyBoundary.x
-        ||pos.y<BottomDestroyBoundary.y||pos.y>TopDestroyBoundary.y)
+        if((pos.x<LeftDestroyBoundary.x||pos.x>RightDestroyBoundary.x
+        ||pos.y<BottomDestroyBoundary.y||pos.y>TopDestroyBoundary.y)&&bounded)
         {
             GameObject.Destroy(gameObject);
         }

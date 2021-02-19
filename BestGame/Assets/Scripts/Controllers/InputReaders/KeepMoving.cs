@@ -7,7 +7,7 @@ public class KeepMoving : InputReader
 {
     public override void Tick(EntityController cont)
     {
-        ThrustEngaged = true;
-        RotationInput = Random.Range(-1,1);
+        cont.MovementInput = true;
+        cont.RotationalInput += Random.Range(-1.0f,1.0f);
     }
 }

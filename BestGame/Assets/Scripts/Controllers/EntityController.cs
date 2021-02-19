@@ -20,6 +20,9 @@ public class EntityController : MonoBehaviour
     [Space(5)] 
     [SerializeField] private List<InputReader> inputReaders;
 
+     public float RotationalInput;
+    [HideInInspector] public bool MovementInput;
+
     public bool AllowedToMove;
     public bool AllowedToShoot;
 
@@ -81,11 +84,8 @@ public class EntityController : MonoBehaviour
 
     private void ReadInputs()
     {
-        if (inputReaders.Count > 0)
-        {
-            Thrust(inputReaders[0].ThrustEngaged);
-            Rotate(inputReaders[0].RotationInput);
-        }
+        Thrust(MovementInput);
+        Rotate(RotationalInput);
     }
 
     private void UpdateMoveVector()

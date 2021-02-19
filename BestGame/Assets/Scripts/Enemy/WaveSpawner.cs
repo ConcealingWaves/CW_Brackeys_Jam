@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class WaveSpawner : MonoBehaviour
 {
@@ -18,6 +20,8 @@ public class WaveSpawner : MonoBehaviour
     public Transform BottomDestroyBoundary;
     public Transform LeftDestroyBoundary;
     public Transform RightDestroyBoundary;
+
+    public Transform center;
 
     [HideInInspector]
     public float GenerateInterval =0.2f;   //Time interval of enemy generation
@@ -166,7 +170,8 @@ public class WaveSpawner : MonoBehaviour
 
         //Randomly initialize the position of the enemy
         newEnemy.transform.position = enemyPos;
-        newEnemy.transform.rotation = Quaternion.Euler(0,0,90);
+        Vector3 diffVector = center.position - newEnemy.transform.position;
+        newEnemy.transform.rotation = Quaternion.Euler(0,0,Mathf.Atan2(diffVector.y, diffVector.x));
 
 
 
@@ -176,6 +181,7 @@ public class WaveSpawner : MonoBehaviour
         enemyScript.BottomDestroyBoundary = BottomDestroyBoundary.position;
         enemyScript.LeftDestroyBoundary = LeftDestroyBoundary.position;
         enemyScript.RightDestroyBoundary = RightDestroyBoundary.position;
+        enemyScript.bounded = true;
 
     }
     #endregion
