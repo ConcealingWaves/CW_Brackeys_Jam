@@ -35,6 +35,8 @@ public class BeatmapLine : MonoBehaviour
     [SerializeField] private AudioClip clip;
     [SerializeField] private TextAsset commandsFile;
 
+    public float TimeInto => source.time;
+
     public string Line
     {
         get => line;

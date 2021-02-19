@@ -8,7 +8,12 @@ public class WaveSpawner : MonoBehaviour
 {
     #region public variable
     public GameObject[] enemyPrefabs;        //Prefab object of enemys
-    public float[] generateRate;            //The probability of each enemy being generated
+    //public float[] generateRate; //The probability of each enemy being generated
+    public float[] spawnRate;
+    public float[] beatsToStart;
+    [SerializeField] private List<float> spawnTimers;
+
+    public Beatmap referenceMap;
 
     //The boundary
     public Transform TopBoundary;
@@ -47,11 +52,24 @@ public class WaveSpawner : MonoBehaviour
     #region Life cycle function
     void Awake()
     {
-        rateList = new List<float>(generateRate);
+        spawnTimers = new List<float>();
+        for (int i = 0; i < spawnRate.Length; i++)
+        {
+            spawnTimers.Add(0);
+        }
     }
 
     void Update()
     {
+        for (int i = 0; i < spawnTimers.Count; i++)
+        {
+            spawnTimers[i] += Time.deltaTime;
+            if (spawnTimers[i] >= spawnRate[i] && MusicUtility.BeatsToSeconds(beatsToStart[i], referenceMap.Bpm) <= referenceMap.TimeSinceStart)
+            {
+                generateEnemy(i);
+                spawnTimers[i] = 0;
+            }
+        }
         
     }
     #endregion
@@ -59,10 +77,8 @@ public class WaveSpawner : MonoBehaviour
     #region public function
     public void GameStart()
     {
-
         isStart = true;
         isEnd = isPause = false;
-        InvokeRepeating("generate", 0 ,GenerateInterval);
     }
     public void GameOver()
     {

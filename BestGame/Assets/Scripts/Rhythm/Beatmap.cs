@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class Beatmap : MonoBehaviour
 {
@@ -15,7 +16,11 @@ public class Beatmap : MonoBehaviour
     [SerializeField] private bool playOnStart;
     private Dictionary<string, BeatmapLine> parts;
 
+    public float TimeSinceStart => beatmapLines[0].BeatmapLine.TimeInto;
+
     private bool ended;
+
+    public float Bpm => bpm;
     private void Awake()
     {
         ended = false;
@@ -45,7 +50,7 @@ public class Beatmap : MonoBehaviour
             StartRhyhthm();
         }
     }
-
+    
     public BeatmapLine GetPart(string s)
     {
         if (parts.ContainsKey(s)) 
