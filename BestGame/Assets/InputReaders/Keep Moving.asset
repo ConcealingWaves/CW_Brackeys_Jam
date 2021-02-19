@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c5bae76746c80e46a41029def4f18e1, type: 3}
   m_Name: Keep Moving
   m_EditorClassIdentifier: 
+  rotateRestMin: 0.4
+  rotateRestMax: 3
+  rotateFrequencyMin: 0.354
+  rotateFrequencyMax: 0.716
