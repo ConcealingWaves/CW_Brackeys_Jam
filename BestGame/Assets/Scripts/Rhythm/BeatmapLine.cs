@@ -74,7 +74,7 @@ public class BeatmapLine : MonoBehaviour
         Tick += DebugTick;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if(isInRhythm)
             CheckTick();
