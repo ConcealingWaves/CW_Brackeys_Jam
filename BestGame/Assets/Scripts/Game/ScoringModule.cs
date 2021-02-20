@@ -14,6 +14,8 @@ public class ScoringModule : MonoBehaviour
 
     [SerializeField] private Absorber absorbMultiplier;
 
+    public float highestMultiplier;
+
     public float Score
     {
         get => score.Value;
@@ -52,6 +54,7 @@ public class ScoringModule : MonoBehaviour
     private void UpdateCombo()
     {
         scoreMultiplier.Value = absorbMultiplier == null ? 0 : absorbMultiplier.NumberAbsorbed;
+        highestMultiplier = Mathf.Max(highestMultiplier, scoreMultiplier.Value);
     }
 
     private void AddScore(float s)
