@@ -14,6 +14,10 @@ public class BeatmapLine : MonoBehaviour
     public static event TickAction Tick;
     public static event TickAction End;
 
+    public delegate void ActAction();
+
+    public static event ActAction OnActiveToggle;
+
     public const float NEGLIGIBLE_VOLUME = 0.01f;
 
     private string line;
@@ -57,7 +61,7 @@ public class BeatmapLine : MonoBehaviour
 
     public bool IsPlaying
     {
-        get => source.volume < NEGLIGIBLE_VOLUME;
+        get => source.volume > NEGLIGIBLE_VOLUME;
     }
     private void Awake()
     {
@@ -154,11 +158,13 @@ public class BeatmapLine : MonoBehaviour
     public void DeactivateLine()
     {
         source.volume = 0;
+        OnActiveToggle?.Invoke();
     }
 
     public void ActivateLine()
     {
         source.volume = initialVolume;
+        OnActiveToggle?.Invoke();
     }
 
     private static float ToFloat(string value)

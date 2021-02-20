@@ -16,9 +16,13 @@ public class Beatmap : MonoBehaviour
     [SerializeField] private bool playOnStart;
     private Dictionary<string, BeatmapLine> parts;
 
+    [SerializeField] private AudioSource ambienceSource;
+    private IEnumerator currentFadeAction;
+
     public float TimeSinceStart => beatmapLines[0].BeatmapLine.TimeInto;
 
     private bool ended;
+    private bool ambienceOn;
 
     public float Bpm => bpm;
     private void Awake()
@@ -31,16 +35,20 @@ public class Beatmap : MonoBehaviour
             ilp.BeatmapLine.LineName = ilp.PartName;
             ilp.BeatmapLine.Bpm = bpm;
         }
+
+        ambienceOn = true;
     }
 
     private void OnEnable()
     {
         BeatmapLine.End += RaiseEndAction;
+        Absorber.OnCheckBeats += CheckAmbience;
     }
     
     private void OnDisable()
     {
         BeatmapLine.End -= RaiseEndAction;
+        Absorber.OnCheckBeats -= CheckAmbience;
     }
 
     private void Start()
@@ -71,6 +79,49 @@ public class Beatmap : MonoBehaviour
     {
         OnEnd?.Invoke(this);
     }
+
+    private bool AnyPlaying()
+    {
+        foreach (var line in parts.Values)
+        {
+            if (line.IsPlaying)
+            {
+                print(line.LineName);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void CheckAmbience()
+    {
+        if(currentFadeAction !=null) StopCoroutine(currentFadeAction);
+        if (AnyPlaying() && ambienceOn)
+        {
+            currentFadeAction = FadeAmbience(1,0);
+            StartCoroutine(currentFadeAction);
+        }
+        else if (!AnyPlaying() && !ambienceOn)
+        {
+            currentFadeAction = FadeAmbience(0, 1);
+            StartCoroutine(currentFadeAction);
+        }
+    }
+
+    IEnumerator FadeAmbience(float from, float to)
+    {
+        ambienceOn = to > from;
+        float start = Time.time;
+        float fadeTime = MusicUtility.BeatsToSeconds(4, Bpm);
+        while (Time.time - start <= fadeTime)
+        {
+            ambienceSource.volume = Mathf.Lerp(from,to,(Time.time-start)/fadeTime);
+            yield return null;
+        }
+        ambienceSource.volume = to;
+    }
+    
     
 }
 

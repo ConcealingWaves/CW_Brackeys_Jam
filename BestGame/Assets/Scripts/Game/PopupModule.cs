@@ -22,7 +22,7 @@ public class PopupModule : MonoBehaviour
     private void SpawnPopup(HealthHaver dead)
     {
         Enemy enemy = dead.GetComponent<Enemy>();
-        if (enemy == null) return;
+        if (enemy == null || !enemy.enabled) return;
         ScorePopup myPopupPrefab = Instantiate(popupPrefab, dead.transform.position, quaternion.identity);
         myPopupPrefab.DisplayScore(enemy.Value);
         myPopupPrefab.DisplayCombo(comboerToRead.NumberAbsorbed);

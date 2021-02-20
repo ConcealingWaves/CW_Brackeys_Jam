@@ -20,7 +20,7 @@ public class ExternalShooter : MonoBehaviour
         Projectile toSpawn = pool.Spawn(projectile.gameObject, projectile.name, transform.position, transform.rotation).GetComponent<Projectile>();
         if(from.col!=null)
             Physics2D.IgnoreCollision(toSpawn.col, from.col);
-        toSpawn.gameObject.layer = gameObject.layer;
+        toSpawn.gameObject.layer = from.gameObject.layer;
         toSpawn.MyPool = pool;
         toSpawn.MyPoolTag = projectile.name;
         toSpawn.Speed += from.MoveVector.magnitude;

@@ -74,6 +74,10 @@ public class Absorbable : AbsorbBase
     public void GetAbsorbed(Absorber absorber)
     {
         gameObject.layer = absorber.gameObject.layer;
+        foreach (Transform t in absorber.transform)
+        {
+            t.gameObject.layer = gameObject.layer;
+        }
         rb.isKinematic = true;
         rb.useFullKinematicContacts = true;
         //Destroy(rb);
@@ -92,13 +96,17 @@ public class Absorbable : AbsorbBase
         col.enabled = false;
         if (secondaryAbsorber != null)
         {
-            secondaryAbsorber.OnDetach -= Breakaway;
+            //secondaryAbsorber.OnDetach -= Breakaway;
             secondaryAbsorber = null;
         }
         RaiseDetachEvent();
         if(cont != null)
             cont.AllowedToMove = true;
         enabled = false;
+        if(gameObject.activeInHierarchy)
+            StartCoroutine(KillIn(3));
+        else
+            Destroy(gameObject);
     }
 
     private void SetRBValues(Rigidbody2D r)
@@ -114,7 +122,7 @@ public class Absorbable : AbsorbBase
         {
             primaryAbsorber.AddToAbsorbedUnits(absorbable);
             absorbable.SecondaryAbsorber = this;
-            absorbable.OnDetach += Breakaway;
+            //absorbable.OnDetach += Breakaway;
         }
     }
 
@@ -122,5 +130,11 @@ public class Absorbable : AbsorbBase
     {
         if (cont == null) return "";
         return cont.GetRhythmPart();
+    }
+
+    IEnumerator KillIn(float s)
+    {
+        yield return new WaitForSeconds(s);
+        Destroy(gameObject);
     }
 }

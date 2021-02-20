@@ -43,7 +43,7 @@ public class ScoringModule : MonoBehaviour
     private void CalculateScoreFromDeath(HealthHaver dead)
     {
         Enemy deadEnemy = dead.GetComponent<Enemy>();
-        if (deadEnemy != null)
+        if (deadEnemy != null && deadEnemy.enabled)
         {
             AddScore(deadEnemy.Value * scoreMultiplier.Value);
         }

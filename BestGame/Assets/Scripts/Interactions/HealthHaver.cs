@@ -35,7 +35,8 @@ public class HealthHaver : MonoBehaviour, IDamageable
     private void Die()
     {
         RaiseDeathEvents();
-        gameObject.SetActive(false); //replace with some death sequence
+        transform.parent = null;
+        StartCoroutine(KillIn(0.1f));
     }
     
     public void TakeHit(float dmg)
@@ -59,5 +60,11 @@ public class HealthHaver : MonoBehaviour, IDamageable
     {
         OnDie?.Invoke(this);
         OnThisDie?.Invoke(this);
+    }
+    
+    IEnumerator KillIn(float s)
+    {
+        yield return new WaitForSeconds(s);
+        Destroy(gameObject);
     }
 }

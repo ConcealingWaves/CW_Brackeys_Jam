@@ -12,6 +12,10 @@ public class Absorber : AbsorbBase
     public delegate void AbsorbAction(Absorber a, Absorbable ab);
     public static event AbsorbAction OnAbsorb;
 
+    public delegate void OnCheckBeatsAction();
+
+    public static event OnCheckBeatsAction OnCheckBeats;
+
     private const float SKIN_WIDTH = 0.1f;
     
     private Collider2D col;
@@ -71,6 +75,19 @@ public class Absorber : AbsorbBase
     {
         base.Update();
         cont.MoveSpeedFactor = Mathf.Pow(1-memberWeight , numberAbsorbed);
+        PruneInactive();
+    }
+
+    private void PruneInactive()
+    {
+        foreach (Transform t in transform)
+        {
+            if (!t.gameObject.activeInHierarchy)
+            {
+                Destroy(t.gameObject);
+            }
+        }
+        PruneBadAlternators();
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -93,13 +110,18 @@ public class Absorber : AbsorbBase
 
     private void CheckAlternation()
     {
+        PruneBadAlternators();
+        StartCoroutine(AdjustMapsAfter(0.1f));
+    }
+
+    private void PruneBadAlternators()
+    {
         foreach (var ash in getAlternator.Values)
         {
             ash.ShootersToAlternate.RemoveAll(a => a==null);
             ash.ShootersToAlternate.RemoveAll(a => a.transform.parent!=transform);
             ash.ShootersToAlternate.RemoveAll(a => !a.gameObject.activeInHierarchy);
         }
-        AdjustBeatmapLines();
     }
 
     public override bool IsAbsorbed() => true;
@@ -120,6 +142,13 @@ public class Absorber : AbsorbBase
             else
                 line.ActivateLine();
         }
+        OnCheckBeats?.Invoke();
+    }
+
+    IEnumerator AdjustMapsAfter(float f)
+    {
+        yield return new WaitForSeconds(f);
+        AdjustBeatmapLines();
     }
 }
 
