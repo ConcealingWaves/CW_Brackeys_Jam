@@ -96,14 +96,15 @@ public class Beatmap : MonoBehaviour
 
     private void CheckAmbience()
     {
-        if(currentFadeAction !=null) StopCoroutine(currentFadeAction);
         if (AnyPlaying() && ambienceOn)
         {
+            if(currentFadeAction !=null) StopCoroutine(currentFadeAction);
             currentFadeAction = FadeAmbience(1,0);
             StartCoroutine(currentFadeAction);
         }
         else if (!AnyPlaying() && !ambienceOn)
         {
+            if(currentFadeAction !=null) StopCoroutine(currentFadeAction);
             currentFadeAction = FadeAmbience(0, 1);
             StartCoroutine(currentFadeAction);
         }
@@ -121,8 +122,22 @@ public class Beatmap : MonoBehaviour
         }
         ambienceSource.volume = to;
     }
+
+    public void Pause()
+    {
+        foreach (var part in parts.Values)
+        {
+            part.PauseRhythm();
+        }
+    }
     
-    
+    public void Unpause()
+    {
+        foreach (var part in parts.Values)
+        {
+            part.ResumeRhythm();
+        }
+    }
 }
 
 [System.Serializable]

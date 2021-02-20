@@ -51,7 +51,7 @@ public class ScoringModule : MonoBehaviour
 
     private void UpdateCombo()
     {
-        scoreMultiplier.Value = absorbMultiplier.NumberAbsorbed;
+        scoreMultiplier.Value = absorbMultiplier == null ? 0 : absorbMultiplier.NumberAbsorbed;
     }
 
     private void AddScore(float s)

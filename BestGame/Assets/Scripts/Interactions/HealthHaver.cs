@@ -36,7 +36,14 @@ public class HealthHaver : MonoBehaviour, IDamageable
     {
         RaiseDeathEvents();
         transform.parent = null;
-        StartCoroutine(KillIn(0.1f));
+        StartCoroutine(KillIn(3));
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<EntityController>().enabled = false;
+        foreach (var s in GetComponentsInChildren<SpriteRenderer>())
+        {
+            s.enabled = false;
+        }
+        
     }
     
     public void TakeHit(float dmg)

@@ -19,13 +19,15 @@ public class PursuePlayer : InputReader
     public override void Enter(EntityController cont)
     {
         List<Absorber> candidates = FindObjectsOfType<Absorber>().Where(s => s.gameObject.layer == LayerMask.NameToLayer("Friendly")).ToList();
-        if (candidates.Count == 0) Debug.LogError("Can't find an appropriate player to pursue!");
+//        if (candidates.Count == 0) Debug.LogError("Can't find an appropriate player to pursue!");
         if (candidates.Count > 1) Debug.LogWarning("Found multiple player candidates to pursue! I picked the first one.");
-        toPursue = candidates[0].transform;
+        if(candidates.Count > 0)
+            toPursue = candidates[0].transform;
     }
 
     public override void Tick(EntityController cont)
     {
+        if (toPursue == null) return;
         Transform contTransform = cont.transform;
         Vector3 differenceVector = (toPursue.position - contTransform.position).normalized;
         Vector3 cross = Vector3.Cross(differenceVector, contTransform.up);

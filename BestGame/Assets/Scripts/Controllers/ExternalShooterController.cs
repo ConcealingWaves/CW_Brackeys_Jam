@@ -22,8 +22,11 @@ public class ExternalShooterController : EntityController
 
     private void Shoot()
     {
-        foreach(var e in externalShooters)
+        foreach (var e in externalShooters)
+        {
+            if (e == null) continue;
             e.Shoot(this);
+        }
     }
 
     public override void InvokeShootAction()
