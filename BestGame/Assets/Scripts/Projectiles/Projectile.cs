@@ -6,6 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class Projectile : MonoBehaviour
 {
+    [SerializeField] private Material playerBulletMat;
+    [SerializeField] private Material enemyBulletMat;
+
     [HideInInspector] public Collider2D col;
 
     private ObjectPool myPool;
@@ -60,7 +63,7 @@ public class Projectile : MonoBehaviour
 
     private void FixedUpdate()
     {
-        mySprite.color = gameObject.layer != LayerMask.NameToLayer("Friendly") ? new Color(1,0,0,1) : new Color(1,1,1,0.7f);
+        mySprite.material = gameObject.layer != LayerMask.NameToLayer("Friendly") ? enemyBulletMat : playerBulletMat;
         Move();
     }
 
