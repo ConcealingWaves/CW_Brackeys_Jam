@@ -16,6 +16,8 @@ public class ScoringModule : MonoBehaviour
 
     public float highestMultiplier;
 
+    [SerializeField] private float playerHitPenalty;
+
     public float Score
     {
         get => score.Value;
@@ -30,11 +32,13 @@ public class ScoringModule : MonoBehaviour
     private void OnEnable()
     {
         HealthHaver.OnDie += CalculateScoreFromDeath;
+        HealthHaver.OnHit += CalculateScorePenalty;
     }
 
     private void OnDisable()
     {
         HealthHaver.OnDie -= CalculateScoreFromDeath;
+        HealthHaver.OnHit -= CalculateScorePenalty;
     }
 
     private void Update()
@@ -47,7 +51,16 @@ public class ScoringModule : MonoBehaviour
         Enemy deadEnemy = dead.GetComponent<Enemy>();
         if (deadEnemy != null && deadEnemy.enabled)
         {
-            AddScore(deadEnemy.Value * scoreMultiplier.Value);
+            AddScore(deadEnemy.Value * scoreMultiplier.Value * GlobalStats.DifficultyMultiplier(GlobalStats.instance.SelectedDifficulty));
+        }
+    }
+
+    private void CalculateScorePenalty(float f, HealthHaver playerIsIt)
+    {
+        Absorber abs = playerIsIt.GetComponent<Absorber>();
+        if (abs != null)
+        {
+            AddScore(-playerHitPenalty);
         }
     }
 

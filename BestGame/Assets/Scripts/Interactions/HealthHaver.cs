@@ -30,6 +30,11 @@ public class HealthHaver : MonoBehaviour, IDamageable
     {
         isDead = false;
         health = baseHealth;
+
+        if (GetComponent<Absorber>() != null)
+        {
+            health = GlobalStats.instance.SelectedDifficulty == Difficulty.HARDCORE ? 1 : 10000000000;
+        }
     }
     
     private void Die()

@@ -24,7 +24,7 @@ public class PopupModule : MonoBehaviour
         Enemy enemy = dead.GetComponent<Enemy>();
         if (enemy == null || !enemy.enabled) return;
         ScorePopup myPopupPrefab = Instantiate(popupPrefab, dead.transform.position, quaternion.identity);
-        myPopupPrefab.DisplayScore(enemy.Value);
+        myPopupPrefab.DisplayScore(enemy.Value * GlobalStats.DifficultyMultiplier(GlobalStats.instance.SelectedDifficulty));
         myPopupPrefab.DisplayCombo(comboerToRead.NumberAbsorbed);
     }
 }
