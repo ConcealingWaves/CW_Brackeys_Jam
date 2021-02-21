@@ -564,8 +564,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3579838113770056527}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 0, y: 0.57, z: 0}
-  m_LocalScale: {x: 0.21145, y: 0.21145, z: 0.21145}
+  m_LocalPosition: {x: 0.04, y: 0.05, z: 0}
+  m_LocalScale: {x: -1.2801602, y: -1.2801602, z: -1.2801602}
   m_Children: []
   m_Father: {fileID: 4526487199000691527}
   m_RootOrder: 0
@@ -610,7 +610,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 84fb58b570836ac4689ee1f4539905b0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 85c05840d06b2614084e48f8086d9ecf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -759,6 +759,7 @@ GameObject:
   - component: {fileID: 3501376594967969127}
   - component: {fileID: 3501376594967969126}
   - component: {fileID: 3501376594967969148}
+  - component: {fileID: 8254066466654071039}
   m_Layer: 6
   m_Name: Player Controlled Object 1 1
   m_TagString: Untagged
@@ -775,7 +776,7 @@ Transform:
   m_GameObject: {fileID: 4526487199000691521}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.35967, y: 0.35967, z: 0.35967}
   m_Children:
   - {fileID: 3579838113770056528}
   - {fileID: 3579838113778667393}
@@ -832,7 +833,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: c750c72c1aa1c7c4db41140d9a85d67f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e26e6bf3ab5074d4f81da177707d05d9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -856,9 +857,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.29}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.84
 --- !u!50 &4526487199000691523
 Rigidbody2D:
   serializedVersion: 4
@@ -1068,6 +1069,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDamageClip: {fileID: 8300000, guid: c8115754b0151004c99a34fc4a446229, type: 3}
   playerDeathClip: {fileID: 8300000, guid: e8c0e576932874e49a28e5a0e9c8aef7, type: 3}
+  absorbClip: {fileID: 0}
 --- !u!114 &3501376594967969148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1081,3 +1083,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linePrefab: {fileID: 2947928004433642502, guid: 0b007a2aa96bff94c9918eab41d14ca4, type: 3}
+--- !u!114 &8254066466654071039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4526487199000691521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fc620c1da2316647b807bb1e7fb9664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pulsateTo: 1.05
+  pulsateCycleBeats: 1

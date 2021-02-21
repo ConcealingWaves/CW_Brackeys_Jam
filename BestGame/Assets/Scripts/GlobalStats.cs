@@ -14,7 +14,7 @@ public class GlobalStats : MonoBehaviour
     private float highScore;
     private Difficulty selectedDifficulty;
     private bool everCompleted;
-    public int maxInstrumentsEver;
+    private int maxInstrumentsEver;
 
     public float HighScore
     {
@@ -61,5 +61,7 @@ public class GlobalStats : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        selectedDifficulty = Difficulty.NORMAL;
     }
 }
