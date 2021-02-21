@@ -7,6 +7,7 @@ using UnityEngine;
 public class TextFader : MonoBehaviour
 {
     [SerializeField] private List<TextMeshProUGUI> faders;
+    [SerializeField] private List<TextMeshProUGUI> hcFaders;
 
     [SerializeField] private float fadeTimeEach;
 
@@ -31,6 +32,23 @@ public class TextFader : MonoBehaviour
                 yield return null;
             }
             textToFade.gameObject.SetActive(false);
+        }
+
+        if (GlobalStats.instance.SelectedDifficulty == Difficulty.HARDCORE)
+        {
+            foreach (var textToFade in hcFaders)
+            {
+                yield return new WaitForSeconds(fadeWaitInterval);
+                textToFade.gameObject.SetActive(true);
+                float startTime = Time.time;
+                Color originalColor = textToFade.color;
+                while (Time.time - startTime <= fadeTimeEach)
+                {
+                    textToFade.color = Color.Lerp(new Color(1,1,1,0),originalColor,Mathf.Sin((Time.time-startTime)/fadeTimeEach*Mathf.PI));
+                    yield return null;
+                }
+                textToFade.gameObject.SetActive(false);
+            }
         }
     }
 }
