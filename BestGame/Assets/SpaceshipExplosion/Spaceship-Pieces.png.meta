@@ -1,7 +1,34 @@
 fileFormatVersion: 2
 guid: 5a199c5e228f69d58b7f403db3700214
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -6570091815376496300
+    second: Spaceship-Pieces_0
+  - first:
+      213: -2011028384649552713
+    second: Spaceship-Pieces_1
+  - first:
+      213: 118901313086709588
+    second: Spaceship-Pieces_2
+  - first:
+      213: 8910259386904583546
+    second: Spaceship-Pieces_3
+  - first:
+      213: 5300130623447493371
+    second: Spaceship-Pieces_4
+  - first:
+      213: 2768512060757505488
+    second: Spaceship-Pieces_5
+  - first:
+      213: 517938827294043880
+    second: Spaceship-Pieces_6
+  - first:
+      213: -4957409501178445644
+    second: Spaceship-Pieces_7
+  - first:
+      213: -92080726033730120
+    second: Spaceship-Pieces_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,7 +68,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -75,9 +102,210 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Spaceship-Pieces_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 128
+        width: 41
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45958c2cd4852d4a0800000000000000
+      internalID: -6570091815376496300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spaceship-Pieces_1
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 127
+        width: 63
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bc5cbbc6546714e0800000000000000
+      internalID: -2011028384649552713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spaceship-Pieces_2
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 129
+        width: 41
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45f5cd14d1c66a100800000000000000
+      internalID: 118901313086709588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spaceship-Pieces_3
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 64
+        width: 49
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7d990d24b997ab70800000000000000
+      internalID: 8910259386904583546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spaceship-Pieces_4
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 65
+        width: 56
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bfae1c188b8dd8940800000000000000
+      internalID: 5300130623447493371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spaceship-Pieces_5
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 65
+        width: 48
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d5f5d11d0bbb6620800000000000000
+      internalID: 2768512060757505488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spaceship-Pieces_6
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 8
+        width: 56
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ee6e388e96103700800000000000000
+      internalID: 517938827294043880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spaceship-Pieces_7
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 3
+        width: 35
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b0cc1cf25eb33bb0800000000000000
+      internalID: -4957409501178445644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spaceship-Pieces_8
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 5
+        width: 45
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b5791a411dd8bef0800000000000000
+      internalID: -92080726033730120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
