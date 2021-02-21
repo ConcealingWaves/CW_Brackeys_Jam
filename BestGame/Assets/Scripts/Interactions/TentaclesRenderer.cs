@@ -12,13 +12,11 @@ public class TentaclesRenderer : MonoBehaviour
     private Absorber absorber;
 
     private List<LineRenderer> linesOnScreen;
-    private List<LineRenderer> oldLinesOnScreen;
 
     private void Awake()
     {
         absorber = GetComponent<Absorber>();
         linesOnScreen = new List<LineRenderer>();
-        oldLinesOnScreen = new List<LineRenderer>();
     }
 
     private void Update()
@@ -28,9 +26,7 @@ public class TentaclesRenderer : MonoBehaviour
 
     private void DrawLines()
     {
-        foreach(var v in oldLinesOnScreen) Destroy(v.gameObject);
-        oldLinesOnScreen.RemoveAll(s=>true);
-        oldLinesOnScreen.AddRange(linesOnScreen);
+        foreach(var v in linesOnScreen) Destroy(v.gameObject);
         linesOnScreen.RemoveAll(s=>true);
         List<Transform> absorbed = GetComponentsInChildren<Absorbable>().ToList().Select(s => s.transform).ToList();
         foreach (var a in absorbed)

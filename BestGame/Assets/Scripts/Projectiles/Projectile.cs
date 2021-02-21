@@ -16,6 +16,8 @@ public class Projectile : MonoBehaviour
     private float speed;
     [SerializeField] private float damage;
 
+    private SpriteRenderer mySprite;
+
     public float Speed
     {
         get => speed;
@@ -37,6 +39,7 @@ public class Projectile : MonoBehaviour
     private void Awake()
     {
         col = GetComponent<Collider2D>();
+        mySprite = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -50,6 +53,7 @@ public class Projectile : MonoBehaviour
     private void OnEnable()
     {
         speed = baseSpeed;
+        mySprite.color = gameObject.layer != LayerMask.NameToLayer("Friendly") ? new Color(1,0,0,1) : new Color(1,1,1,0.7f);
     }
 
     private void FixedUpdate()
