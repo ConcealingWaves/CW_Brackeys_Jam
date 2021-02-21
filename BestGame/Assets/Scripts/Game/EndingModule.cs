@@ -9,6 +9,7 @@ public class EndingModule : MonoBehaviour
     [SerializeField] private Beatmap mapToWatch;
     [SerializeField] private HealthHaver playerToWatch;
     [SerializeField] private ScoringModule scoreToRead;
+    [SerializeField] private InstrumentIndicators indicatorToRead;
     [SerializeField] private EndScreen endScreen;
     [TextArea(2,8)]
     [Space] [SerializeField] private List<String> songEndStrings;
@@ -32,7 +33,7 @@ public class EndingModule : MonoBehaviour
         if (bm == mapToWatch)
         {
             endScreen.gameObject.SetActive(true);
-            endScreen.StartSequence(songEndStrings[Random.Range(0,songEndStrings.Count)], scoreToRead.Score, scoreToRead.highestMultiplier);
+            endScreen.StartSequence(songEndStrings[Random.Range(0,songEndStrings.Count)], scoreToRead.Score, scoreToRead.highestMultiplier,indicatorToRead.MaxInstruments);
         }
     }
 
@@ -41,7 +42,7 @@ public class EndingModule : MonoBehaviour
         if (hh == playerToWatch)
         {
             endScreen.gameObject.SetActive(true);
-            endScreen.StartSequence(deathEndStrings[Random.Range(0,deathEndStrings.Count)], scoreToRead.Score, scoreToRead.highestMultiplier);
+            endScreen.StartSequence(deathEndStrings[Random.Range(0,deathEndStrings.Count)], scoreToRead.Score, scoreToRead.highestMultiplier,indicatorToRead.MaxInstruments);
         }
     }
     

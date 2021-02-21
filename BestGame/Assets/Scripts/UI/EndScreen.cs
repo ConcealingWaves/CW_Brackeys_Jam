@@ -9,6 +9,7 @@ public class EndScreen : MonoBehaviour
     [SerializeField] private TextMeshProUGUI whyEndField;
     [SerializeField] private ScoreText scoreField;
     [SerializeField] private ScoreText comboField;
+    [SerializeField] private ScoreText instrumentsField;
     [SerializeField] private float updateGap;
     [SerializeField] private AudioSource endScreenAudio;
     [SerializeField] private AudioClip endScreenTallyClip;
@@ -28,12 +29,17 @@ public class EndScreen : MonoBehaviour
         comboField.SetScore(combo);
     }
 
-    public void StartSequence(string s, float f, float c)
+    public void SetInstruments(int ins)
     {
-        StartCoroutine(EndSequence(s,f,c));
+        instrumentsField.SetScore(ins);
     }
 
-    IEnumerator EndSequence(string endText, float score, float combo)
+    public void StartSequence(string s, float f, float c, int i)
+    {
+        StartCoroutine(EndSequence(s,f,c, i));
+    }
+
+    IEnumerator EndSequence(string endText, float score, float combo, int i)
     {
         SetEndText(endText);
         yield return new WaitForSeconds(updateGap);
@@ -41,5 +47,7 @@ public class EndScreen : MonoBehaviour
         endScreenAudio.PlayOneShot(endScreenTallyClip);
         yield return new WaitForSeconds(updateGap);
         SetCombo(combo);
+        yield return new WaitForSeconds(updateGap);
+        SetInstruments(i);
     }
 }

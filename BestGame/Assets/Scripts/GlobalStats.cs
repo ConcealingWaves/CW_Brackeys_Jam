@@ -14,6 +14,7 @@ public class GlobalStats : MonoBehaviour
     private float highScore;
     private Difficulty selectedDifficulty;
     private bool everCompleted;
+    public int maxInstrumentsEver;
 
     public float HighScore
     {
@@ -31,6 +32,12 @@ public class GlobalStats : MonoBehaviour
     {
         get => everCompleted;
         set => everCompleted = value;
+    }
+
+    public int MAXInstrumentsEver
+    {
+        get => maxInstrumentsEver;
+        set => maxInstrumentsEver = value;
     }
 
     public static float DifficultyMultiplier(Difficulty d)
