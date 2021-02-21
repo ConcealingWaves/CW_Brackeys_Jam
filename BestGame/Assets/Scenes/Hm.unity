@@ -1413,7 +1413,7 @@ MonoBehaviour:
   followBehindFactor: 0.3
   smoothTime: 0.2
   toFollow: {fileID: 464538391}
-  defaultSize: 8.5
+  defaultSize: 9.4
   sizeScalar: 0.3
   sizeChangeSpeed: 0.5
 --- !u!20 &519420031
