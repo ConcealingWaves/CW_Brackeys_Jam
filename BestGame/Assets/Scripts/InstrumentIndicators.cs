@@ -45,6 +45,7 @@ public class InstrumentIndicators : MonoBehaviour
 
         MaxInstruments = Mathf.Max(MaxInstruments, hasInstrument.Where(s=>s).ToList().Count);
         Completed = Completed || hasInstrument.Aggregate((a, b) => a && b);
+        GlobalStats.instance.MAXInstrumentsEver = Mathf.Max(MaxInstruments, GlobalStats.instance.MAXInstrumentsEver);
         if (Completed)
             GlobalStats.instance.EverCompleted = Completed;
     }

@@ -10,6 +10,10 @@ using UnityEngine.PlayerLoop;
 public class Absorbable : AbsorbBase
 {
     private const float SMALL_MAGNITUDE = 0.3f;
+
+    public delegate void OnAbsorbedAction();
+
+    public event OnAbsorbedAction OnThisAbsorb;
     
     private Absorber primaryAbsorber;
     private AbsorbBase secondaryAbsorber;
@@ -94,6 +98,7 @@ public class Absorbable : AbsorbBase
         primaryAbsorber = absorber;
         cont.AllowedToMove = false;
         cont.AllowedToShoot = false;
+        OnThisAbsorb?.Invoke();
     }
 
     public void Breakaway()

@@ -588,6 +588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDamageClip: {fileID: 0}
   playerDeathClip: {fileID: 8300000, guid: 4237547e71778a743b0319d6259a57a4, type: 3}
+  absorbClip: {fileID: 8300000, guid: 25a5e04b7911d5646be742a3a1165426, type: 3}
 --- !u!60 &9023093808775011649
 PolygonCollider2D:
   m_ObjectHideFlags: 0
