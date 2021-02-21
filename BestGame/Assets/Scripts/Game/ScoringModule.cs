@@ -26,7 +26,9 @@ public class ScoringModule : MonoBehaviour
 
     private void Awake()
     {
-
+        score.Value = 0;
+        scoreMultiplier.Value = 0;
+        highestMultiplier = 0;
     }
 
     private void OnEnable()
