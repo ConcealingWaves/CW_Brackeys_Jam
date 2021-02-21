@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: PlayerBulletMaterial
   m_Shader: {fileID: -6465566751694194690, guid: fe90c357a2f8784bb974c4a659808131, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -37,5 +37,5 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats: []
     m_Colors:
-    - Color_460920a40c5947a7a48702310112a302: {r: 0.44705883, g: 0.44705883, b: 0.44705883, a: 1}
+    - Color_460920a40c5947a7a48702310112a302: {r: 0.8784314, g: 8, b: 3.8588235, a: 1}
   m_BuildTextureStacks: []
