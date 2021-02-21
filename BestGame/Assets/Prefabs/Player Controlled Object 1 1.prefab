@@ -52,6 +52,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dd5b3af3c0256454b91a48e7347d4ead, type: 2}
   RotationalInput: 0
   MovementInput: 0
+  BackwardsInput: 0
   AllowedToMove: 0
   AllowedToShoot: 0
   InternalTimer: 0
@@ -111,6 +112,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e63be21161fc2d643986e72ff8dc3da5, type: 2}
   RotationalInput: 0
   MovementInput: 0
+  BackwardsInput: 0
   AllowedToMove: 0
   AllowedToShoot: 0
   InternalTimer: 0
@@ -170,6 +172,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dbb80b276907e2948a5914a145aa56c5, type: 2}
   RotationalInput: 0
   MovementInput: 0
+  BackwardsInput: 0
   AllowedToMove: 0
   AllowedToShoot: 0
   InternalTimer: 0
@@ -229,6 +232,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 97dba3ef0894d2045a0bfbb2924dbaad, type: 2}
   RotationalInput: 0
   MovementInput: 0
+  BackwardsInput: 0
   AllowedToMove: 0
   AllowedToShoot: 0
   InternalTimer: 0
@@ -287,6 +291,7 @@ MonoBehaviour:
   inputReaders: []
   RotationalInput: 0
   MovementInput: 0
+  BackwardsInput: 0
   AllowedToMove: 0
   AllowedToShoot: 0
   InternalTimer: 0
@@ -346,6 +351,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0a44d22b16be3984c9f165a738aa38b7, type: 2}
   RotationalInput: 0
   MovementInput: 0
+  BackwardsInput: 0
   AllowedToMove: 0
   AllowedToShoot: 0
   InternalTimer: 0
@@ -405,6 +411,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: da6b31e64a0925a4bb1b6c653b0cbcf7, type: 2}
   RotationalInput: 0
   MovementInput: 0
+  BackwardsInput: 0
   AllowedToMove: 0
   AllowedToShoot: 0
   InternalTimer: 0
@@ -464,6 +471,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 28ebae321a5b1d3488142ba664567801, type: 2}
   RotationalInput: 0
   MovementInput: 0
+  BackwardsInput: 0
   AllowedToMove: 0
   AllowedToShoot: 0
   InternalTimer: 0
@@ -523,6 +531,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 415121dc0683b91429f7f5800d8e154d, type: 2}
   RotationalInput: 0
   MovementInput: 0
+  BackwardsInput: 0
   AllowedToMove: 0
   AllowedToShoot: 0
   InternalTimer: 0
@@ -664,6 +673,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9649f6431c775824284d30068fc39001, type: 2}
   RotationalInput: 0
   MovementInput: 0
+  BackwardsInput: 0
   AllowedToMove: 0
   AllowedToShoot: 0
   InternalTimer: 0
@@ -723,6 +733,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f408e0536a9b9fb49bb36b4855246e8a, type: 2}
   RotationalInput: 0
   MovementInput: 0
+  BackwardsInput: 0
   AllowedToMove: 0
   AllowedToShoot: 0
   InternalTimer: 0
@@ -890,6 +901,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2ba5a29d28a81324b897e36e3cca61bb, type: 2}
   RotationalInput: 0
   MovementInput: 0
+  BackwardsInput: 0
   AllowedToMove: 0
   AllowedToShoot: 0
   InternalTimer: 0
@@ -955,7 +967,7 @@ AudioSource:
   m_GameObject: {fileID: 4526487199000691521}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -642998999618048617, guid: 42a1364ecb883634cb7f8f8074f4db91, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
