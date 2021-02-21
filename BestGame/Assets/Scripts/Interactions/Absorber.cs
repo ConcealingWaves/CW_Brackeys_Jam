@@ -16,6 +16,8 @@ public class Absorber : AbsorbBase
 
     public static event OnCheckBeatsAction OnCheckBeats;
 
+    public static event OnCheckBeatsAction OnChange;
+
     private const float SKIN_WIDTH = 0.1f;
     
     private Collider2D col;
@@ -105,6 +107,7 @@ public class Absorber : AbsorbBase
         a.GetAbsorbed(this);
         getAlternator[a.GetRhythmPart()].AddShooter(a.cont);
         OnAbsorb?.Invoke(this, a);
+        OnChange?.Invoke();
         RaiseChangeEvent();
     }
 
@@ -122,6 +125,7 @@ public class Absorber : AbsorbBase
             ash.ShootersToAlternate.RemoveAll(a => a.transform.parent!=transform);
             ash.ShootersToAlternate.RemoveAll(a => !a.gameObject.activeInHierarchy);
         }
+        OnChange?.Invoke();
     }
 
     public override bool IsAbsorbed() => true;
@@ -149,6 +153,12 @@ public class Absorber : AbsorbBase
     {
         yield return new WaitForSeconds(f);
         AdjustBeatmapLines();
+    }
+
+    public bool HasInstrument(string s)
+    {
+        AlternatingShooters alternator = getAlternator[s];
+        return alternator.Count != 0;
     }
 }
 
