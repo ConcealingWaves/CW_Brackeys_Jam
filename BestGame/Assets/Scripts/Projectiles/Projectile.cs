@@ -88,6 +88,7 @@ public class Projectile : MonoBehaviour
 
     private void DespawnMe()
     {
+        if (myPool == null) return;
         MyPool.Despawn(gameObject, MyPoolTag);
     }
     
@@ -98,6 +99,7 @@ public class Projectile : MonoBehaviour
 
     public void ResetTrail()
     {
+        if (myTrail == null) return;
         myTrail.time = 0.1f;
         myTrail.Clear();
     }
