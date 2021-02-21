@@ -44,8 +44,6 @@ public class EntityController : MonoBehaviour
         targetMoveVector = Vector2.zero;
         ExternalMoveVector = Vector2.zero;
         MoveSpeedFactor = 1;
-        AllowedToMove = true;
-        AllowedToShoot = true;
     }
 
     private void Start()

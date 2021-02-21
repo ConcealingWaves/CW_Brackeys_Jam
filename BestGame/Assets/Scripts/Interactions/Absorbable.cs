@@ -22,7 +22,7 @@ public class Absorbable : AbsorbBase
     private string originalLayer;
     
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private Sprite absorbedSprite;
+    [SerializeField] private Color absorbedColor;
     [SerializeField] private Enemy killMe;
 
     public EntityController cont;
@@ -81,7 +81,10 @@ public class Absorbable : AbsorbBase
         rb.isKinematic = true;
         rb.useFullKinematicContacts = true;
         //Destroy(rb);
-        spriteRenderer.sprite = absorbedSprite;
+        spriteRenderer.color = absorbedColor;
+        EnemyAnimations anim = GetComponent<EnemyAnimations>();
+        if(anim!=null)
+            anim.UpdateColor(absorbedColor);
         killMe.enabled = false;
         primaryAbsorber = absorber;
         cont.AllowedToMove = false;

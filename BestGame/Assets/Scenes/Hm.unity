@@ -1577,6 +1577,18 @@ PrefabInstance:
       propertyPath: rotateSpeed
       value: 120
       objectReference: {fileID: 0}
+    - target: {fileID: 4526487199000691522, guid: e92309f9715fa294196aac6efcbedc04, type: 3}
+      propertyPath: AllowedToMove
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526487199000691522, guid: e92309f9715fa294196aac6efcbedc04, type: 3}
+      propertyPath: AllowedToShoot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526487199000691524, guid: e92309f9715fa294196aac6efcbedc04, type: 3}
+      propertyPath: m_Radius
+      value: 0.22
+      objectReference: {fileID: 0}
     - target: {fileID: 4526487199000691525, guid: e92309f9715fa294196aac6efcbedc04, type: 3}
       propertyPath: beatmapToAdjust
       value: 
@@ -1627,7 +1639,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4526487199000691528, guid: e92309f9715fa294196aac6efcbedc04, type: 3}
       propertyPath: baseHealth
-      value: 1
+      value: 1000000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e92309f9715fa294196aac6efcbedc04, type: 3}

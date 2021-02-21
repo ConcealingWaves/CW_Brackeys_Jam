@@ -38,6 +38,7 @@ public class HealthHaver : MonoBehaviour, IDamageable
         transform.parent = null;
         StartCoroutine(KillIn(3));
         GetComponent<Collider2D>().enabled = false;
+        GetComponent<EntityController>().AllowedToShoot = false;
         GetComponent<EntityController>().enabled = false;
         foreach (var s in GetComponentsInChildren<SpriteRenderer>())
         {

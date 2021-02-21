@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
@@ -21,6 +22,9 @@ public class EnemyAnimations : MonoBehaviour
     [SerializeField] private float hitGlowTime;
     private Color originalColor;
 
+    [Space(10)] [Header("Death Explosion")] [SerializeField]
+    private Transform deathExplosion;
+
     private IEnumerator hitSequence;
     
     private void Awake()
@@ -35,6 +39,12 @@ public class EnemyAnimations : MonoBehaviour
     private void OnEnable()
     {
         healthHaver.OnThisHit += HitGlow;
+        healthHaver.OnThisDie += SpawnExplosion;
+    }
+    private void OnDisable()
+    {
+        healthHaver.OnThisHit -= HitGlow;
+        healthHaver.OnThisDie -= SpawnExplosion;
     }
 
     private void Start()
@@ -48,6 +58,10 @@ public class EnemyAnimations : MonoBehaviour
         Pulsate();
     }
 
+    public void UpdateColor(Color c)
+    {
+        originalColor = c;
+    }
     private void Pulsate()
     {
         float timeInCycle = (mapToRead.TimeSinceStart % pulsateCycleSeconds)/pulsateCycleSeconds;
@@ -79,5 +93,17 @@ public class EnemyAnimations : MonoBehaviour
         {
             v.color = originalColor;
         }
+    }
+
+    private void SpawnExplosion(HealthHaver hh)
+    {
+        Transform t = Instantiate(deathExplosion, hh.transform.position, Quaternion.identity);
+        StartCoroutine(KillAfter(3, t));
+    }
+
+    IEnumerator KillAfter(float s, Transform t)
+    {
+        yield return new WaitForSeconds(s);
+        Destroy(t.gameObject);
     }
 }

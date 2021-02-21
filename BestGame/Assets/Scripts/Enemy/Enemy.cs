@@ -24,6 +24,8 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private float value = 100;
 
+    private EntityController cont;
+
     public float Value => value;
 
     private bool isPause = false;
@@ -32,6 +34,12 @@ public class Enemy : MonoBehaviour
     void Awake() {
         //InvokeRepeating("fire", 0 ,fireInterval);
         col = GetComponent<Collider2D>();
+        cont = GetComponent<EntityController>();
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(ShootLeniencySequence());
     }
 
     private void Start()
@@ -47,6 +55,13 @@ public class Enemy : MonoBehaviour
         {
             GameObject.Destroy(gameObject);
         }
+    }
+
+    IEnumerator ShootLeniencySequence()
+    {
+        cont.AllowedToShoot = false;
+        yield return new WaitForSeconds(1.6f);
+        cont.AllowedToShoot = true;
     }
     public void GamePause()
     {

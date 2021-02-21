@@ -10,7 +10,5 @@ public class PlayerInputReader : InputReader
         cont.RotationalInput = Input.GetAxisRaw("Horizontal");
         cont.MovementInput = Input.GetKey(KeyCode.W);
         cont.BackwardsInput = Input.GetKey(KeyCode.S);
-        if (Input.GetKeyDown(KeyCode.Space))
-            InvokeShoot(cont);
     }
 }

@@ -49,15 +49,15 @@ public class Projectile : MonoBehaviour
             playBounds = GameObject.FindWithTag("Stage").GetComponent<SpriteRenderer>();
         }
     }
-
+    
     private void OnEnable()
     {
         speed = baseSpeed;
-        mySprite.color = gameObject.layer != LayerMask.NameToLayer("Friendly") ? new Color(1,0,0,1) : new Color(1,1,1,0.7f);
     }
 
     private void FixedUpdate()
     {
+        mySprite.color = gameObject.layer != LayerMask.NameToLayer("Friendly") ? new Color(1,0,0,1) : new Color(1,1,1,0.7f);
         Move();
     }
 
