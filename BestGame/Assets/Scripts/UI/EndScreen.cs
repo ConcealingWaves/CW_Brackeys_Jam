@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+
 public class EndScreen : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI whyEndField;
     [SerializeField] private ScoreText scoreField;
     [SerializeField] private ScoreText comboField;
     [SerializeField] private float updateGap;
+    [SerializeField] private AudioSource endScreenAudio;
+    [SerializeField] private AudioClip endScreenTallyClip;
 
     public void SetEndText(string endText)
     {
@@ -35,6 +38,7 @@ public class EndScreen : MonoBehaviour
         SetEndText(endText);
         yield return new WaitForSeconds(updateGap);
         SetScore(score);
+        endScreenAudio.PlayOneShot(endScreenTallyClip);
         yield return new WaitForSeconds(updateGap);
         SetCombo(combo);
     }

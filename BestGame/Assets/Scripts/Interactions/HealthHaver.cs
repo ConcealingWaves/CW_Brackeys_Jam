@@ -25,7 +25,7 @@ public class HealthHaver : MonoBehaviour, IDamageable
         get => health;
         set => health = Mathf.Max(value, 0);
     }
-
+    
     private void Start()
     {
         isDead = false;

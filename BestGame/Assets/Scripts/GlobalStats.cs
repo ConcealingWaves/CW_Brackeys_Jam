@@ -13,6 +13,7 @@ public class GlobalStats : MonoBehaviour
 
     private float highScore;
     private Difficulty selectedDifficulty;
+    private bool everCompleted;
 
     public float HighScore
     {
@@ -24,6 +25,12 @@ public class GlobalStats : MonoBehaviour
     {
         get => selectedDifficulty;
         set => selectedDifficulty = value;
+    }
+    
+    public bool EverCompleted
+    {
+        get => everCompleted;
+        set => everCompleted = value;
     }
 
     public static float DifficultyMultiplier(Difficulty d)
