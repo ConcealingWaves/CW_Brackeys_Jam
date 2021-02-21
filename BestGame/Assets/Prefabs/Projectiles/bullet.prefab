@@ -114,4 +114,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   col: {fileID: 0}
   baseSpeed: 5
-  damage: 100
+  damage: 1

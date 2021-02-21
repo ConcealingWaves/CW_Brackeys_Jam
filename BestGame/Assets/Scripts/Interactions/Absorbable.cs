@@ -74,6 +74,7 @@ public class Absorbable : AbsorbBase
     public void GetAbsorbed(Absorber absorber)
     {
         gameObject.layer = absorber.gameObject.layer;
+        GetComponent<HealthHaver>().Health++;
         foreach (Transform t in absorber.transform)
         {
             t.gameObject.layer = gameObject.layer;
