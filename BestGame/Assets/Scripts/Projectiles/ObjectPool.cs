@@ -50,10 +50,10 @@ public class ObjectPool : MonoBehaviour
         if(!pools.ContainsKey(t))
             CreatePool(t, obj);
         GameObject toSpawn = pools[t].Get();
-        toSpawn.SetActive(true);
         toSpawn.transform.position = pos;
         toSpawn.transform.rotation = rot;
         onScreen[toSpawn] = true;
+        toSpawn.SetActive(true);
         return toSpawn;
     }
 
