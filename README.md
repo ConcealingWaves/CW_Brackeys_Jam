@@ -33,7 +33,7 @@ Composition by Michael Barbagallo
 
 - Lyrics and Vocals by Anniemay Parker
 
-###Special Thanks
+### Special Thanks
 - Sarah Baradhi
 
 - Brendan Barry-Cotter
