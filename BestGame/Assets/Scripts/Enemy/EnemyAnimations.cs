@@ -19,6 +19,7 @@ public class EnemyAnimations : MonoBehaviour
     [Space(10)][Header("Hit Glow")]
     [SerializeField] private List<SpriteRenderer> sprites;
     [SerializeField] private Color hitColor;
+    [SerializeField] private Color hitStayColor;
     [SerializeField] private float hitGlowTime;
     private Color originalColor;
 
@@ -91,7 +92,7 @@ public class EnemyAnimations : MonoBehaviour
         }
         foreach (var v in sprites)
         {
-            v.color = originalColor;
+            v.color = hitStayColor;
         }
     }
 
