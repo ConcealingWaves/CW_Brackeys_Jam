@@ -1569,6 +1569,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Controlled Object 1 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4526487199000691522, guid: e92309f9715fa294196aac6efcbedc04, type: 3}
+      propertyPath: moveSpeed
+      value: 9.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526487199000691522, guid: e92309f9715fa294196aac6efcbedc04, type: 3}
+      propertyPath: rotateSpeed
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 4526487199000691525, guid: e92309f9715fa294196aac6efcbedc04, type: 3}
       propertyPath: beatmapToAdjust
       value: 

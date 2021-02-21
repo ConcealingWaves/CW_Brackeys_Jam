@@ -22,6 +22,7 @@ public class EntityController : MonoBehaviour
 
     [HideInInspector] public float RotationalInput;
     [HideInInspector] public bool MovementInput;
+    [HideInInspector] public bool BackwardsInput;
 
     public bool AllowedToMove;
     public bool AllowedToShoot;
@@ -88,7 +89,7 @@ public class EntityController : MonoBehaviour
 
     private void ReadInputs()
     {
-        Thrust(MovementInput);
+        Thrust(MovementInput, BackwardsInput);
         Rotate(RotationalInput);
     }
 
@@ -103,9 +104,10 @@ public class EntityController : MonoBehaviour
         rb.MovePosition(rb.position + movementThisFrame);
     }
 
-    private void Thrust(bool on)
+    private void Thrust(bool on, bool back)
     {
         targetMoveVector = on ? (Vector2)transform.up * (moveSpeed * MoveSpeedFactor) : Vector2.zero;
+        targetMoveVector -= back ? (Vector2) transform.up * (moveSpeed * MoveSpeedFactor) / 2 : Vector2.zero;
         targetMoveVector += ExternalMoveVector;
     }
 
