@@ -81,6 +81,10 @@ public class Absorbable : AbsorbBase
         rb.isKinematic = true;
         rb.useFullKinematicContacts = true;
         //Destroy(rb);
+        foreach (var v in GetComponentsInChildren<SpriteRenderer>())
+        {
+            v.color = absorbedColor;
+        }
         spriteRenderer.color = absorbedColor;
         EnemyAnimations anim = GetComponent<EnemyAnimations>();
         if(anim!=null)
