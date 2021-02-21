@@ -41,7 +41,7 @@ public class HealthHaver : MonoBehaviour, IDamageable
     {
         RaiseDeathEvents();
         transform.parent = null;
-        StartCoroutine(KillIn(3));
+        StartCoroutine(KillIn(0.2f));
         GetComponent<Collider2D>().enabled = false;
         GetComponent<EntityController>().AllowedToShoot = false;
         GetComponent<EntityController>().enabled = false;

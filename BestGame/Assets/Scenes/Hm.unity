@@ -5993,6 +5993,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1830440603}
     m_Modifications:
+    - target: {fileID: 7534736106837043916, guid: 0a48929c3edfddc4baf9d1a6ee0de548, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -371
+      objectReference: {fileID: 0}
+    - target: {fileID: 7534736106837043917, guid: 0a48929c3edfddc4baf9d1a6ee0de548, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7534736107606803460, guid: 0a48929c3edfddc4baf9d1a6ee0de548, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6080,6 +6088,38 @@ PrefabInstance:
     - target: {fileID: 7534736107606803461, guid: 0a48929c3edfddc4baf9d1a6ee0de548, type: 3}
       propertyPath: m_Name
       value: Text Fader
+      objectReference: {fileID: 0}
+    - target: {fileID: 7534736107786793034, guid: 0a48929c3edfddc4baf9d1a6ee0de548, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7534736107786793037, guid: 0a48929c3edfddc4baf9d1a6ee0de548, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 62
+      objectReference: {fileID: 0}
+    - target: {fileID: 7534736108500562534, guid: 0a48929c3edfddc4baf9d1a6ee0de548, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7534736108500562536, guid: 0a48929c3edfddc4baf9d1a6ee0de548, type: 3}
+      propertyPath: m_text
+      value: Too many ships? Ram them into the suicide stations in the corners!
+      objectReference: {fileID: 0}
+    - target: {fileID: 7534736108500562536, guid: 0a48929c3edfddc4baf9d1a6ee0de548, type: 3}
+      propertyPath: m_fontSize
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 7534736108500562536, guid: 0a48929c3edfddc4baf9d1a6ee0de548, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 7534736108500562537, guid: 0a48929c3edfddc4baf9d1a6ee0de548, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 448.749
+      objectReference: {fileID: 0}
+    - target: {fileID: 7534736108500562537, guid: 0a48929c3edfddc4baf9d1a6ee0de548, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 226.35294
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a48929c3edfddc4baf9d1a6ee0de548, type: 3}
