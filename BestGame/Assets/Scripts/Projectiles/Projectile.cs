@@ -17,6 +17,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float damage;
 
     private SpriteRenderer mySprite;
+    private TrailRenderer myTrail;
 
     public float Speed
     {
@@ -40,6 +41,7 @@ public class Projectile : MonoBehaviour
     {
         col = GetComponent<Collider2D>();
         mySprite = GetComponent<SpriteRenderer>();
+        myTrail = GetComponentInChildren<TrailRenderer>();
     }
 
     private void Start()
@@ -53,6 +55,7 @@ public class Projectile : MonoBehaviour
     private void OnEnable()
     {
         speed = baseSpeed;
+        ResetTrail();
     }
 
     private void FixedUpdate()
@@ -67,7 +70,7 @@ public class Projectile : MonoBehaviour
         if (Mathf.Abs(playBounds.bounds.center.x - transform.position.x) > playBounds.bounds.extents.x ||
             Mathf.Abs(playBounds.bounds.center.y - transform.position.y) > playBounds.bounds.extents.y)
         {
-            myPool.Despawn(gameObject, myPoolTag);
+            DespawnMe();
         }
     }
 
@@ -88,6 +91,12 @@ public class Projectile : MonoBehaviour
     public void Rotate(float r)
     {
         transform.Rotate(transform.forward, r);
+    }
+
+    public void ResetTrail()
+    {
+        myTrail.time = 0.1f;
+        myTrail.Clear();
     }
 
 }
